@@ -81,6 +81,7 @@ public class SignUpPage {
         String Address = scanner.nextLine();
         // Prompt user to enter their phone number
         int PhoneNumber = 0;
+        // add exception to check if a user already has this phone number
         boolean validPhoneNumber = false;
         while (!validPhoneNumber) {
             try {
