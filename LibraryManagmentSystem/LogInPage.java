@@ -53,7 +53,19 @@ public class LogInPage {
             if (person.getuser_ID() == userID) {
                 // Print the welcome message
                 System.out.println("Hello, " + person.getFirstName() + "!");
-                adminpage(person);
+                // check if the person is a admin
+                if (person.getIsAdmin())
+                {
+                    System.out.println("You are an admin");
+                    adminpage(person);
+
+                }
+                else
+                {
+                    System.out.println("You are a user");
+                    userpage(person);
+                }
+               
                 return;
             }
         }
@@ -62,6 +74,12 @@ public class LogInPage {
     public static void adminpage(Person person){
         if(person instanceof Librarian) {
             AdminPage.AdminPage();
+        }
+    }
+
+    public static void userpage (Person person){
+        if(person instanceof Reader) {
+            UserPage.UserPage();
         }
     }
 }

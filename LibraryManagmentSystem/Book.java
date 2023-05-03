@@ -70,7 +70,7 @@ public class Book {
   }
 
   // display all books
-  public void displayAllBooks(ArrayList<Book> books) {
+  public static void displayAllBooks(ArrayList<Book> books) {
     for (Book b : books) {
       b.displayBookInfo();
     }
