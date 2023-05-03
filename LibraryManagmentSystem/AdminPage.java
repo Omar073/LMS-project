@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class AdminPage {
 
-    public static void AdminPage(){
+    public static void AdminPage(Person person){
 
         Scanner scanner = new Scanner(System.in);
 
@@ -17,29 +17,72 @@ public class AdminPage {
         System.out.println("6. Update a user");
         System.out.println("7. View all books");
         System.out.println("8. View all users");
-        System.out.println("9. View all orders");
-        System.out.println("10. View all orders of a user");
-        System.out.println("11. View all orders of a book");
-        System.out.println("12. View all orders of a user for a book");
-        System.out.println("13. View all orders of a user for a book");
-        System.out.println("14. View all orders of a user for a book");
-        System.out.println("15. View all orders of a user for a book");
-        System.out.println("16. View all orders of a user for a book");
-        System.out.println("17. View all orders of a user for a book");
-        System.out.println("18. View all orders of a user for a book");
-        System.out.println("19. View all orders of a user for a book");
-        System.out.println("20. View all orders of a user for a book");
-        System.out.println("21. View all orders of a user for a book");
-        System.out.println("22. View all orders of a user for a book");
-        System.out.println("23. View all orders of a user for a book");
-        System.out.println("24. View all orders of a user for a book");
-        System.out.println("25. View all orders of a user for a book");
-        System.out.println("26. View all orders of a user for a book");
-        System.out.println("27. View all orders of a user for a book");
-        System.out.println("28. View all orders of a user for a book");
-        System.out.println("29. View all orders of a user for a book");
-        System.out.println("30. View all orders of a user for a book");
-        System.out.println("31. View all orders of a user for a book");
+        System.out.println("9. Search Users");
+        System.out.println("10. Search Books");
+        System.out.println("11. View cart");
+        System.out.println("12. Add to cart");  // add to cart / rent book
+        System.out.println("13. Remove book from cart");
+        System.out.println("14. Return book");
+        System.out.println("15. Block User");
+        System.out.println("16. Logout");
         int choice = Integer.parseInt(scanner.nextLine());
+
+        switch (choice) {
+            case 1:
+                Librarian.add_book(Library.books);
+                break;
+            case 2:
+                // removeBook();
+                break;
+            case 3:
+                // updateBook();
+                break;
+            case 4:
+                // addNewUser();
+                break;
+            case 5:
+                // removeUser();
+                break;
+            case 6:
+                // updateUser();
+                break;
+            case 7:
+                Book.displayAllBooks(Library.books);
+                break;
+            case 8:
+                // viewAllUsers();
+                break;
+            case 9:
+                // searchUsers();
+                break;
+            case 10:
+                // searchBooks();
+                break;
+            case 11:
+                Librarian.View_cart(person);
+                break;
+            case 12:
+                // addToCart();
+                break;
+            case 13:
+                // removeBookFromCart();
+                break;
+            case 14:
+                // returnBook();
+                break;
+            case 15:
+                // blockUser();
+                break;
+            case 16:
+                System.out.println("Logged out successfully!");
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Invalid option selected. Please try again.");
+                AdminPage(person);
+                break;
+        }
+
+    
     }
 }

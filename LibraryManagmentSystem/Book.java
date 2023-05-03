@@ -61,18 +61,18 @@ public class Book {
   }
 
   //display book info
-  public void displayBookInfo() {
-    System.out.println("Book Name: " + this.book_Title);
-    System.out.println("Book ID: " + this.book_ID + "\n");
-    System.out.println("Book Author: " + this.Author + "\n");
-    System.out.println("Book Price: " + this.Price + "\n");
-    System.out.println("Book Quantity: " + this.Quantity + "\n");
+  public static void displayBookInfo(Book b) {
+    System.out.println("Book Name: " + b.book_Title);
+    System.out.println("Book ID: " + b.book_ID + "\n");
+    System.out.println("Book Author: " + b.Author + "\n");
+    System.out.println("Book Price: " + b.Price + "\n");
+    System.out.println("Book Quantity: " + b.Quantity + "\n");
   }
 
   // display all books
-  public void displayAllBooks(ArrayList<Book> books) {
+  public static void displayAllBooks(ArrayList<Book> books) {
     for (Book b : books) {
-      b.displayBookInfo();
+      displayBookInfo(b);
     }
   }
 }
