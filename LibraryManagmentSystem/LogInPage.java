@@ -16,24 +16,21 @@ public class LogInPage {
                 // Prompt user to enter their username and password
                 System.out.print("User ID: ");
                 userID = Integer.parseInt(scanner.nextLine());
+                System.out.print("Password: ");
+                String password = scanner.nextLine();
+                validateCredentials(userID, password, Library.persons);
+                System.out.println("Login successful!");
+                printWelcomeMessage(userID, Library.persons);
                 validInput = true;
-                
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a valid user ID.");
                 scanner.nextLine(); // consume the invalid input
+            } catch (InvalidCredentialsException e) {
+                System.out.println("Login failed: " + e.getMessage());
+                System.out.println("Please try again.");
             }
         }
-        System.out.print("Password: ");
-        String password = scanner.nextLine();
 
-        // Validate user's credentials
-        try {
-            validateCredentials(userID, password, Library.persons);
-            System.out.println("Login successful!");
-            printWelcomeMessage(userID, Library.persons);
-        } catch (InvalidCredentialsException e) {
-            System.out.println("Login failed: " + e.getMessage());
-        }
 
     }
 
