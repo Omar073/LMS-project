@@ -4,6 +4,7 @@ public class Library {
     
     // array list of persons
     static ArrayList<Person> persons;
+    
 
     // array list of books
     static ArrayList<Book> books;
@@ -14,6 +15,7 @@ public class Library {
         
         persons.add(new Librarian(007, "726", true, "Omar", "Ahmed", "Male", "123 Main St", 1234567890, "myemail1@email.com", false));
         persons.add(new Librarian (465, "358", true, "Kareem", "Ahmed", "Male", "123 Main St", 4564356, "newemail2@email.com", false));
+
         persons.add(new Librarian (645, "866", true, "Youssef", "Mahmoud", "Male", "123 Main St", 472574257, "newemail6@email.com", false));
         persons.add(new Librarian (374, "245", true, "Mohammed", "Fadel", "Male", "123 Main St", 3756753, "newemail3@email.com", false));
         persons.add(new Librarian (745, "755", true, "Basel", "Hany", "Male", "123 Main St", 5467456, "newemail4@email.com", false));

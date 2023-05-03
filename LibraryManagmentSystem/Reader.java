@@ -3,6 +3,8 @@ import java.util.Scanner;
 
 public class Reader extends Person{
 
+
+
   Scanner scanner = new Scanner(System.in);
 
   // default constructor
@@ -60,6 +62,10 @@ public class Reader extends Person{
     }
   }
 
+  
+
+
+     
   @Override
   public Book search_book(String bookName, ArrayList<Book> books) {
     return super.search_book(bookName, books);
