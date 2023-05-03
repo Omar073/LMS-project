@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Librarian extends Person{
 
-  Scanner scanner = new Scanner(System.in);
+  static Scanner scanner = new Scanner(System.in);
 
   //constructor
   public Librarian(int user_ID, String password, boolean isAdmin, String FirstName, String LastName, String Gender, String Address, int PhoneNumber, String Email, boolean isBlocked) {
@@ -53,7 +53,7 @@ public class Librarian extends Person{
     return super.search_book(bookName, books);
   }
 
-  void add_book(ArrayList<Book> books) {
+  static void add_book(ArrayList<Book> books) {
 
     System.out.print("Enter book name: ");
     String bookName = scanner.nextLine();
@@ -70,5 +70,31 @@ public class Librarian extends Person{
 
   }
 
+  static void remove_book(ArrayList<Book> books) {
+    System.out.print("Enter book Name or ID: ");
+    String bookKey = scanner.nextLine();
+
+    Book book = null;
+    for (Book b : Library.books) {
+      if (b.getbook_Title() .equals(bookKey) || b.getBookID() == Integer.parseInt(bookKey)) {
+        book = b;
+        break;
+      }
+    }
+
+    if (book == null) {
+      System.out.println("Book ID not found. Please enter a valid Book ID.");
+      return;
+    }
+
+    books.remove(book);
+    System.out.println("Book removed successfully");
+  }
+
+  static void View_cart(Person person){
+    for(Book book : person.getCart()){
+      Book.displayBookInfo(book);
+    }
+  }
   
 }
