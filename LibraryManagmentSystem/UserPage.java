@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class UserPage {
-    public static void UserPage(){
+    public static void UserPage(Person person){
 
 
         Scanner scanner = new Scanner(System.in);

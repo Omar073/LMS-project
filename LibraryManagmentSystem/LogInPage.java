@@ -73,13 +73,13 @@ public class LogInPage {
 
     public static void adminpage(Person person){
         if(person instanceof Librarian) {
-            AdminPage.AdminPage();
+            AdminPage.AdminPage(person);
         }
     }
 
     public static void userpage (Person person){
         if(person instanceof Reader) {
-            UserPage.UserPage();
+            UserPage.UserPage(person);
         }
     }
 }
