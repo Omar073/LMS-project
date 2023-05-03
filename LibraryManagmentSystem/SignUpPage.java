@@ -72,10 +72,10 @@ public class SignUpPage {
 
         System.out.println("Sign up successful!\n");
         
-        //temporary solution
-        Reader reader = new Reader();
-        reader.rent_book(userID, Library.persons, Library.books);
-        // Librarian.rent_book(userID, Library.persons, Library.books);
+        // //temporary solution
+        // Reader reader = new Reader();
+        // reader.rent_book(userID, Library.persons, Library.books);
+        // // Librarian.rent_book(userID, Library.persons, Library.books);
     }
 
     static public void checkUserID(int userID, ArrayList<Person> persons) throws UserIDAlreadyTakenException {

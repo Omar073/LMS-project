@@ -31,6 +31,7 @@ public class Librarian extends Person{
 
     Book book = null;
     for (Book b : Library.books) {
+      // make it so that user can search for book by ID or name
       if (b.getBookID() == bookId) {
         book = b;
         break;

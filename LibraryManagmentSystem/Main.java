@@ -10,11 +10,29 @@ public class Main {
 
     Library library = new Library();
     
-    LogInPage.Login(); // works
+    boolean validInput = false;
 
-    SignUpPage.SignUp();
+    while (!validInput) {
+      System.out.println("Enter '1' to log in or '2' to sign up:");
+      String input = scanner.nextLine();
+      if (input.equals("1")) {
+        LogInPage.Login();
+        validInput = true;
+      } else if (input.equals("2")) {
+        SignUpPage.SignUp();
+        validInput = true;
+      } else {
+        System.out.println("Invalid input. Please enter '1' to log in or '2' to sign up.");
+      }
+    }
 
-    /*int count = 1;
+    scanner.close();
+  }
+}
+
+
+
+/*int count = 1;
     for (Book book : books) {
       System.out.println("Book #" + count++);
       book.displayBookInfo();
@@ -69,7 +87,3 @@ public class Main {
     } else {
       System.out.println("\nBook not found");
     }*/
-
-    scanner.close();
-  }
-}
