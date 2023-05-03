@@ -32,6 +32,7 @@ public class Reader extends Person{
 
     Book book = null;
     while (book == null) {
+      // make it so that user can search for book by ID or name
       System.out.print("Enter Book ID: ");
       int bookId = scanner.nextInt();
       scanner.nextLine();
