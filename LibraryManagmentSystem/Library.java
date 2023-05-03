@@ -5,6 +5,9 @@ public class Library {
     // array list of persons
     static ArrayList<Person> persons;
 
+    // array list of books
+    static ArrayList<Book> books;
+
     public Library(){
 
         persons = new ArrayList<Person>();
@@ -24,14 +27,15 @@ public class Library {
         persons.add(new Reader(2346, "4257", false, "Nour", "Hassan", "Female", "123 Main St", 1234567890, "reader5@mail.com", false));
         persons.add(new Reader(6789, "12346", false, "Mona", "Adel", "Female", "123 Main St", 1234567890, "reader6@mail.com", false));
 
-        ArrayList<Book> books = new ArrayList<>();
+        books = new ArrayList<>();
 
         // adding books to the ArrayList
-        books.add(new Book("Java Programming", 1001, 30));
-        books.add(new Book("Data Structures", 2674, 100));
-        books.add(new Book("C++ for Beginners", 2634, 15));
-        books.add(new Book("Web Development", 8564, 50));
-        books.add(new Book("Python Programming", 2345, 40));
+        
+        books.add(new Book("Data Structures", 2674, "John Doe", 100, 30));
+        books.add(new Book("C++ for Beginners", 2634, "Jim Carrey", 15, 20));
+        books.add(new Book("Web Development", 8564, "Kareem Ahmed", 50, 10));
+        books.add(new Book("Python Programming", 2345, "Dariel Adams", 40, 50));
+        books.add(new Book("OOP in JAVA", 7203, "Omar Ahmed", 200, 5));
 
     }
 }

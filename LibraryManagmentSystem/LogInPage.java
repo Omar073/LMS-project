@@ -35,7 +35,6 @@ public class LogInPage {
             System.out.println("Login failed: " + e.getMessage());
         }
 
-        scanner.close();
     }
 
     public static void validateCredentials(int userID, String password, ArrayList<Person> persons) throws InvalidCredentialsException {

@@ -12,7 +12,12 @@ abstract public class Person{
     private int PhoneNumber;
     private String Email;
     private boolean isBlocked;
+    private ArrayList<Book> book_cart = new ArrayList<>();
   
+    // default constructor
+    public Person() {
+    }
+
     //constructor
     public Person(int user_ID, String password, boolean isAdmin, String FirstName, String LastName, String Gender, String Address, int PhoneNumber, String Email, boolean isBlocked) {
       this.user_ID = user_ID;
@@ -110,28 +115,30 @@ abstract public class Person{
     }
   
     // rent a book
-    public void rent_book(int userId, Book book) {
-      if (book.order_List == null) {
-        book.order_List = new int[1];
-        book.order_List[0] = userId;
-        System.out.println("You have been added to the order list");
-      } else {
-        int[] newOrderList = new int[book.order_List.length + 1];
-        System.arraycopy(book.order_List, 0, newOrderList, 0, book.order_List.length);
-        newOrderList[book.order_List.length] = userId;
-        book.order_List = newOrderList;
-        System.out.println("Book rented successfully");
-      }
-    }
+    public abstract void rent_book(int user_ID, ArrayList<Person> persons, ArrayList<Book> books);
   
     // search for a book
     public Book search_book(String bookName, ArrayList<Book> books) {
       for (Book book : books) {
-        if (book.getBookName().equalsIgnoreCase(bookName)) {
+        if (book.getbook_Title().equalsIgnoreCase(bookName)) {
           return book;
         }
       }
       return null;
     }
-  
+
+    // add a book to cart
+    public void addToCart(Book book){
+      book_cart.add(book);
+    }
+    
+    // remove a book from cart
+    public void removeFromCart(Book book){
+      book_cart.remove(book);
+    }
+
+    // get cart
+    public ArrayList<Book> getCart(){
+      return book_cart;
+    }
   }

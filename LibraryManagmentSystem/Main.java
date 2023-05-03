@@ -10,7 +10,9 @@ public class Main {
 
     Library library = new Library();
     
-    LogInPage.Login();
+    LogInPage.Login(); // works
+
+    SignUpPage.SignUp();
 
     /*int count = 1;
     for (Book book : books) {
