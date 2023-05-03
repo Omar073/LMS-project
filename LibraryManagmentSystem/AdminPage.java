@@ -60,6 +60,7 @@ public class AdminPage {
                 break;
             case 11:
                 Librarian.View_cart(person);
+                //we can make it person.view_cart() if we want
                 break;
             case 12:
                 // addToCart();
