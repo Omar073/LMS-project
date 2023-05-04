@@ -5,41 +5,22 @@ public class Librarian extends Person{
 
   static Scanner scanner = new Scanner(System.in);
 
+  // default constructor
+  public Librarian() {
+  }
+
   //constructor
   public Librarian(int user_ID, String password, boolean isAdmin, String FirstName, String LastName, String Gender, String Address, int PhoneNumber, String Email, boolean isBlocked) {
     super(user_ID, password, isAdmin, FirstName, LastName, Gender, Address, PhoneNumber, Email, isBlocked);
   }
 
   @Override
-  public void rent_book(int user_ID, ArrayList<Person> persons, ArrayList<Book> books) {
-    // Find the person with the given user ID
-    Person person = null;
-    for (Person p : Library.persons) {
-      if (p.getuser_ID() == user_ID) {
-        person = p;
-        break;
-      }
-    }
+  public void rent_book(Person person, ArrayList<Person> persons, ArrayList<Book> books) {
 
-    if (person == null) {
-      System.out.println("User with ID " + user_ID + " not found.");
-      return;
-    }
-
-    System.out.print("Enter book ID: ");
-    int bookId = Integer.parseInt(scanner.nextLine());
-
-    Book book = null;
-    for (Book b : Library.books) {
-      // make it so that user can search for book by ID or name
-      if (b.getBookID() == bookId) {
-        book = b;
-        break;
-      }
-    }
+    Book book = search_book(Library.books);
 
     if (book.getQuantity() > 0) {
-      person.addToCart(book);
+      person.book_cart.add(book);
       book.setQuantity(book.getQuantity() - 1);
       System.out.println("Book " + book.getbook_Title() + " rented successfully by " + person.getFirstName() + " " + person.getLastName());
     } 
@@ -49,9 +30,46 @@ public class Librarian extends Person{
   }
 
   @Override
-  public Book search_book(String bookName, ArrayList<Book> books) {
-    return super.search_book(bookName, books);
+  // remove a book from cart
+  public void removeBookFromCart(Person person){
+    Book b = new Book();
+    b = b.searchBookinCart(person);
+    person.book_cart.remove(b);
   }
+
+
+  @Override
+  public Book search_book(ArrayList<Book> books) {
+    System.out.print("Enter book Name or ID: ");
+    String bookKey = scanner.nextLine();
+    Book book = null;
+    for (Book b : Library.books) {
+      if (b.getbook_Title().equals(bookKey) || b.getBookID() == Integer.parseInt(bookKey)) {
+        book = b;
+        return book;
+      }
+    }
+    if (book == null) {
+      System.out.println("Book not found.");
+    }
+    return book;
+  }
+
+  // @Override
+  // public void searchBook(ArrayList<Book> books) {
+  //   System.out.print("Enter book Name or ID: ");
+  //   String bookKey = scanner.nextLine();
+  //   Book book = null;
+  //   for (Book b : Library.books) {
+  //     if (b.getbook_Title().equals(bookKey) || b.getBookID() == Integer.parseInt(bookKey)) {
+  //       book = b;
+  //       b.displayBookInfo(book);
+  //     }
+  //   }
+  //   if (book == null) {
+  //     System.out.println("Book not found.");
+  //   }
+  // }
 
   static void add_book(ArrayList<Book> books) {
 
@@ -71,16 +89,10 @@ public class Librarian extends Person{
   }
 
   static void remove_book(ArrayList<Book> books) {
-    System.out.print("Enter book Name or ID: ");
-    String bookKey = scanner.nextLine();
 
     Book book = null;
-    for (Book b : Library.books) {
-      if (b.getbook_Title() .equals(bookKey) || b.getBookID() == Integer.parseInt(bookKey)) {
-        book = b;
-        break;
-      }
-    }
+    Librarian librarian = new Librarian();
+    book = librarian.search_book(books);
 
     if (book == null) {
       System.out.println("Book ID not found. Please enter a valid Book ID.");
@@ -96,5 +108,75 @@ public class Librarian extends Person{
       Book.displayBookInfo(book);
     }
   }
+
+  public void updateBook(){
+    Book b = null;
+    b = search_book(Library.books);
+    Book.updateBook(b);
+  }
+
+  @ Override
+  public Person search_user(ArrayList<Person> persons){
+    System.out.print("Enter user Name or ID: ");
+    String user_key = scanner.nextLine();
+    Person person = null;
+    for (Person p : Library.persons) {
+      if (p.getuser_ID() == Integer.parseInt(user_key) || p.getFirstName().equals(user_key)) {
+        person = p;
+        return person;
+      }
+    }
+    if (person == null) {
+      System.out.println("User not found.");
+    }
+    return person;
+  }
   
+  // removeUser
+  public void removeUser(){
+    Person p = null;
+    p = search_user(Library.persons);
+    Library.persons.remove(p);
+    System.out.println("User removed successfully");
+  }
+
+  // UpdateUser
+  public void updateUserinfo(){
+    Person p = null;
+    p = search_user(Library.persons);
+    System.out.print("Enter new ID: ");
+    p.setuser_ID(getuser_ID());
+    // try to implement ID already taken
+    System.out.print("Enter new Password: ");
+    p.setPassword(scanner.nextLine());
+    System.out.print("Enter new First Name: ");
+    p.setFirstName(scanner.nextLine());
+    System.out.print("Enter new Last Name: ");
+    p.setLastName(scanner.nextLine());
+    System.out.print("Enter new address: ");
+    p.setAddress(scanner.nextLine());
+    System.out.print("Enter new Phone Number: ");
+    p.setPhoneNumber(Integer.parseInt(scanner.nextLine()));
+    System.out.print("Enter new Email: ");
+    p.setEmail(scanner.nextLine());
+    System.out.println("User updated successfully");
+  }
+
+  @Override
+  public void displayPersonInfo(Person p){
+    System.out.println(p.getFirstName());
+    System.out.println(p.getLastName());
+    System.out.println(p.getPhoneNumber());
+    System.out.println(p.getEmail());
+  }
+
+  @Override
+  public void viewAllUsers(Librarian librarian) {
+    for(Person p : Library.persons){
+      librarian.displayPersonInfo(p);
+    }
+  }
+
+  
+
 }
