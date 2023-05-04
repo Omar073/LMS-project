@@ -1,13 +1,19 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Book {
+
+  static Scanner scanner = new Scanner(System.in);
     
   private String book_Title;
   private int book_ID;
   private String Author;
   private int Price;
   private int Quantity;
-  int[] order_List; // array of ids of users who ordered the book
+  // public int[] order_List; // array of ids of users who ordered the book
+
+  // default constructor
+  public Book() {}
 
   // constructor
   public Book(String book_Title, int id, String Author, int Price, int Quantity) {
@@ -74,5 +80,37 @@ public class Book {
     for (Book b : books) {
       displayBookInfo(b);
     }
+  }
+
+  //Update book info
+  public static void updateBook(Book b) {
+    System.out.print("Enter new book name: ");
+    b.setbook_Title(scanner.nextLine());
+    System.out.print("Enter new book ID: ");
+    b.setBookID(Integer.parseInt(scanner.nextLine()));
+    System.out.print("Enter new book Author: ");
+    b.setAuthor(scanner.nextLine());
+    System.out.print("Enter new book Price: ");
+    b.setPrice(Integer.parseInt(scanner.nextLine()));
+    System.out.print("Enter new book Quantity: ");
+    b.setQuantity(Integer.parseInt(scanner.nextLine()));
+    
+    System.out.println("Book updated successfully");
+  }
+
+  public Book searchBookinCart(Person person){
+    System.out.print("Enter book Name or ID: ");
+    String bookKey = scanner.nextLine();
+    Book book = null;
+    for (Book b : person.book_cart) {
+      if (b.getbook_Title().equals(bookKey) || b.getBookID() == Integer.parseInt(bookKey)) {
+        book = b;
+        return book;
+      }
+    }
+    if (book == null) {
+      System.out.println("Book not found.");
+    }
+    return book;
   }
 }

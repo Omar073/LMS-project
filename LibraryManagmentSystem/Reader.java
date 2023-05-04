@@ -3,8 +3,6 @@ import java.util.Scanner;
 
 public class Reader extends Person{
 
-
-
   Scanner scanner = new Scanner(System.in);
 
   // default constructor
@@ -17,43 +15,12 @@ public class Reader extends Person{
   }
 
   @Override
-  public void rent_book(int user_ID, ArrayList<Person> persons, ArrayList<Book> books) {
-    // Find the person with the given user ID
-    Person person = null;
-    for (Person p : Library.persons) {
-      if (p.getuser_ID() == user_ID) {
-        person = p;
-        break;
-      }
-    }
+  public void rent_book(Person person, ArrayList<Person> persons, ArrayList<Book> books) {
 
-    if (person == null) {
-      System.out.println("User with ID " + user_ID + " not found.");
-      return;
-    }
-
-    Book book = null;
-    while (book == null) {
-      // make it so that user can search for book by ID or name
-      System.out.print("Enter Book ID: ");
-      int bookId = scanner.nextInt();
-      scanner.nextLine();
-
-      for (Book b : Library.books) {
-        if (b.getBookID() == bookId) {
-          book = b;
-          break;
-        }
-      }
-
-      if (book == null) {
-        System.out.println("Book ID not found. Please enter a valid Book ID.");
-      }
-    }
-
+    Book book = search_book(Library.books);
 
     if (book.getQuantity() > 0) {
-      person.addToCart(book);
+      person.book_cart.add(book);
       book.setQuantity(book.getQuantity() - 1);
       System.out.println("Book " + book.getbook_Title() + " rented successfully by " + person.getFirstName() + " " + person.getLastName());
     } 
@@ -62,13 +29,80 @@ public class Reader extends Person{
     }
   }
 
-  
-
-
-     
   @Override
-  public Book search_book(String bookName, ArrayList<Book> books) {
-    return super.search_book(bookName, books);
+  // remove a book from cart
+  public void removeBookFromCart(Person person){
+    Book b = new Book();
+    b = b.searchBookinCart(person);
+    person.book_cart.remove(b);
   }
+
+
+  @Override
+  public Book search_book(ArrayList<Book> books) {
+    System.out.print("Enter book Name or ID: ");
+    String bookKey = scanner.nextLine();
+    Book book = null;
+    for (Book b : Library.books) {
+      if (b.getbook_Title().equals(bookKey) || b.getBookID() == Integer.parseInt(bookKey)) {
+        book = b;
+        return book;
+      }
+    }
+    if (book == null) {
+      System.out.println("Book not found.");
+    }
+    return book;
+  }
+  
+  // @Override
+  // public void searchBook(ArrayList<Book> books) {
+  //   System.out.print("Enter book Name or ID: ");
+  //   String bookKey = scanner.nextLine();
+  //   Book book = null;
+  //   for (Book b : Library.books) {
+  //     if (b.getbook_Title().equals(bookKey) || b.getBookID() == Integer.parseInt(bookKey)) {
+  //       book = b;
+  //       Book.displayBookInfo(book);
+  //     }
+  //   }
+  //   if (book == null) {
+  //     System.out.println("Book not found.");
+  //   }
+  // }
+
+  @ Override
+  public Person search_user(ArrayList<Person> persons){
+    System.out.print("Enter user Name or ID: ");
+    String user_key = scanner.nextLine();
+    Person person = null;
+    for (Person p : Library.persons) {
+      if (p.getuser_ID() == Integer.parseInt(user_key) || p.getFirstName().equals(user_key)) {
+        person = p;
+        return person;
+      }
+    }
+    if (person == null) {
+      System.out.println("User not found.");
+    }
+    return person;
+  }
+
+  @Override
+  public void displayPersonInfo(Person p){
+    System.out.println(p.getFirstName());
+    System.out.println(p.getLastName());
+    System.out.println(p.getPhoneNumber());
+    System.out.println(p.getEmail());
+  }
+
+  @Override
+  public void viewAllUsers(Librarian librarian) {
+    for(Person p : Library.persons){
+      librarian.displayPersonInfo(p);
+    }
+  }
+
+
 
 }

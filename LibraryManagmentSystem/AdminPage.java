@@ -7,6 +7,8 @@ public class AdminPage {
 
         Scanner scanner = new Scanner(System.in);
 
+        Librarian librarian = (Librarian) person; // downcasting
+
         System.out.println("\nWelcome to the Admin Page");
         System.out.println("Please select an option");
         System.out.println("1. Add a new book");
@@ -22,9 +24,8 @@ public class AdminPage {
         System.out.println("11. View cart");
         System.out.println("12. Add to cart");  // add to cart / rent book
         System.out.println("13. Remove book from cart");
-        System.out.println("14. Return book");
-        System.out.println("15. Block User");
-        System.out.println("16. Logout");
+        System.out.println("14. Block User");
+        System.out.println("15. Logout");
         int choice = Integer.parseInt(scanner.nextLine());
 
         switch (choice) {
@@ -32,49 +33,49 @@ public class AdminPage {
                 Librarian.add_book(Library.books);
                 break;
             case 2:
-                // removeBook();
+                Librarian.remove_book(Library.books);
                 break;
             case 3:
-                // updateBook();
+                librarian.updateBook();
                 break;
             case 4:
-                // addNewUser();
+                SignUpPage.SignUp();
                 break;
             case 5:
-                // removeUser();
+                librarian.removeUser();
                 break;
             case 6:
-                // updateUser();
+                librarian.updateUserinfo();
                 break;
             case 7:
                 Book.displayAllBooks(Library.books);
                 break;
             case 8:
-                // viewAllUsers();
+                librarian.viewAllUsers(librarian);
                 break;
             case 9:
-                // searchUsers();
+                librarian.search_user(Library.persons);
                 break;
             case 10:
-                // searchBooks();
+                Book b = librarian.search_book(Library.books);
+                Book.displayBookInfo(b);
                 break;
             case 11:
-                Librarian.View_cart(person);
-                //we can make it person.view_cart() if we want
+                Librarian.View_cart(librarian);
+                //we can make it librarian.view_cart() if we want
                 break;
             case 12:
-                // addToCart();
+                librarian.rent_book(librarian, Library.persons, Library.books);
                 break;
             case 13:
-                // removeBookFromCart();
+                librarian.removeBookFromCart(librarian);
+                // serach only in arraylist of cart
                 break;
             case 14:
-                // returnBook();
+                Person BlockedP = librarian.search_user(Library.persons);
+                BlockedP.setIsBlocked(true);
                 break;
             case 15:
-                // blockUser();
-                break;
-            case 16:
                 System.out.println("Logged out successfully!");
                 System.exit(0);
                 break;
