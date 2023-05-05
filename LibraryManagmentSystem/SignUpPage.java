@@ -72,11 +72,6 @@ public class SignUpPage {
         Library.persons.add(new Reader(userID, password, false, firstName, lastName, Gender, Address, PhoneNumber, email, false));
 
         System.out.println("Sign up successful!\n");
-        
-        // //temporary solution
-        // Reader reader = new Reader();
-        // reader.rent_book(userID, Library.persons, Library.books);
-        // // Librarian.rent_book(userID, Library.persons, Library.books);
     }
 
     static public void checkUserID(int userID, ArrayList<Person> persons) throws UserIDAlreadyTakenException {
@@ -94,57 +89,5 @@ class UserIDAlreadyTakenException extends Exception {
         super("This user ID is already taken by another user.");
     }
 }
-
-
-// import java.util.ArrayList;
-// import java.util.Scanner;
-
-// public class SignUpPage {
-
-//     static public void SignUp() {
-
-//         Scanner scanner = new Scanner(System.in);
-
-//         int user_ID;
-//         String password;
-//         String FirstName;
-//         String LastName;
-//         String Gender;
-//         String Address;
-//         int PhoneNumber;
-//         String Email;
-
-//         // Prompt user to enter their information
-//         System.out.print("First name: ");
-//         String firstName = scanner.nextLine();
-
-//         System.out.print("Last name: ");
-//         String lastName = scanner.nextLine();
-
-//         int userID = 0;
-//         boolean validInput = false;
-//         while (!validInput) {
-//             try {
-//                 System.out.print("User ID: ");
-//                 userID = Integer.parseInt(scanner.nextLine());
-//                 validInput = true;
-//             } catch (NumberFormatException e) {
-//                 System.out.println("Invalid input. Please enter a valid user ID.");
-//             }
-//         }
-
-//         System.out.print("Password: ");
-//         String password = scanner.nextLine();
-
-//         // Create a new person object with the user's information
-//         Person newPerson = new Person(firstName, lastName, userID, password);
-
-//         // Add the new person to the list of persons in the library
-//         Library.persons.add(newPerson);
-
-//         System.out.println("Sign up successful!");
-//         scanner.close();
-//     }
-// }
 
 

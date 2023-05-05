@@ -93,7 +93,4 @@ public class Reader extends Person{
       librarian.displayPersonInfo(p);
     }
   }
-
-
-
 }
