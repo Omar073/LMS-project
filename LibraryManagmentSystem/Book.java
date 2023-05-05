@@ -103,7 +103,7 @@ public class Book {
     String bookKey = scanner.nextLine();
     Book book = null;
     for (Book b : person.book_cart) {
-      if (b.getbook_Title().equals(bookKey) || b.getBookID() == Integer.parseInt(bookKey)) {
+      if (b.getbook_Title().equalsIgnoreCase(bookKey) || b.getBookID() == Integer.parseInt(bookKey)) {
         book = b;
         return book;
       }

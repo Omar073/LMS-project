@@ -38,7 +38,7 @@ public class LogInPage {
 
         // Check if the username and password match any of the persons in the ArrayList
         for (Person person : persons) {
-            if (person.getuser_ID() == userID && person.getPassword().equals(password)) {
+            if (person.getuser_ID() == userID && person.getPassword().equalsIgnoreCase(password)) {
                 return;
             }
         }
