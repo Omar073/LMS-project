@@ -29,11 +29,9 @@ public class UserPage {
             case 2:
                 Reader.View_cart(reader);
                 break;
-
             case 3:
                 reader.rent_book(reader ,Library.persons, Library.books);
                 break;
-
             case 4:
                 reader.removeBookFromCart(reader);
                 break;
@@ -44,12 +42,9 @@ public class UserPage {
                 reader.search_user(Library.persons);
                 break;
             case 7:
-            System.out.println("Logged out successfully!");
-            System.exit(0);
-            break;
-
-
-      
+                System.out.println("Logged out successfully!");
+                System.exit(0);
+                break;
             default:
                 System.out.println("Invalid choice, please try again.");
                 break;
