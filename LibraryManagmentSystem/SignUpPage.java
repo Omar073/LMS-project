@@ -18,8 +18,9 @@ public class SignUpPage {
         boolean validGender = false;
         while (!validGender) {
             System.out.print("Gender: ");
-            Gender = scanner.nextLine().toLowerCase();
-            if (Gender.equals("male") || Gender.equals("female")) {
+            // Gender = scanner.nextLine().toLowerCase();
+            Gender = scanner.nextLine();
+            if (Gender.equalsIgnoreCase("male") || Gender.equalsIgnoreCase("female")) {
                 validGender = true;
             } 
             else {

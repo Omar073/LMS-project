@@ -51,7 +51,7 @@ public class Reader extends Person{
     String bookKey = scanner.nextLine();
     Book book = null;
     for (Book b : Library.books) {
-      if (b.getbook_Title().equals(bookKey) || b.getBookID() == Integer.parseInt(bookKey)) {
+      if (b.getbook_Title().equalsIgnoreCase(bookKey) || b.getBookID() == Integer.parseInt(bookKey)) {
         book = b;
         return book;
       }
@@ -61,22 +61,6 @@ public class Reader extends Person{
     }
     return book;
   }
-  
-  // @Override
-  // public void searchBook(ArrayList<Book> books) {
-  //   System.out.print("Enter book Name or ID: ");
-  //   String bookKey = scanner.nextLine();
-  //   Book book = null;
-  //   for (Book b : Library.books) {
-  //     if (b.getbook_Title().equals(bookKey) || b.getBookID() == Integer.parseInt(bookKey)) {
-  //       book = b;
-  //       Book.displayBookInfo(book);
-  //     }
-  //   }
-  //   if (book == null) {
-  //     System.out.println("Book not found.");
-  //   }
-  // }
 
   @ Override
   public Person search_user(ArrayList<Person> persons){
@@ -84,7 +68,7 @@ public class Reader extends Person{
     String user_key = scanner.nextLine();
     Person person = null;
     for (Person p : Library.persons) {
-      if (p.getuser_ID() == Integer.parseInt(user_key) || p.getFirstName().equals(user_key)) {
+      if (p.getuser_ID() == Integer.parseInt(user_key) || p.getFirstName().equalsIgnoreCase(user_key)) {
         person = p;
         return person;
       }
