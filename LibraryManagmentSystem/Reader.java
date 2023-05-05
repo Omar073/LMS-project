@@ -29,6 +29,13 @@ public class Reader extends Person{
     }
   }
 
+
+  static void View_cart(Person person){
+    for(Book book : person.getCart()){
+      Book.displayBookInfo(book);
+    }
+  }
+
   @Override
   // remove a book from cart
   public void removeBookFromCart(Person person){

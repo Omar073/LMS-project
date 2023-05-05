@@ -6,6 +6,8 @@ public class UserPage {
 
         Scanner scanner = new Scanner(System.in);
 
+        Reader reader =  (Reader) person;
+
         
 
         System.out.println("\nWelcome to the User Page");
@@ -16,9 +18,7 @@ public class UserPage {
         System.out.println("4. Return a book");
         System.out.println("5. Search book");
         System.out.println("6. Search User");
-        System.out.println("7. Add book to cart");
-        System.out.println("8. Remove book from cart");
-        System.out.println("9. Logout");
+        System.out.println("7. Logout");
 
         int choice = Integer.parseInt(scanner.nextLine());
 
@@ -27,8 +27,28 @@ public class UserPage {
                 Book.displayAllBooks(Library.books);
                 break;
             case 2:
-                // View Cart
+                Reader.View_cart(reader);
                 break;
+
+            case 3:
+                reader.rent_book(reader ,Library.persons, Library.books);
+                break;
+
+            case 4:
+                reader.removeBookFromCart(reader);
+                break;
+            case 5:
+                reader.search_book(Library.books);
+                break;
+            case 6:
+                reader.search_user(Library.persons);
+                break;
+            case 7:
+            System.out.println("Logged out successfully!");
+            System.exit(0);
+            break;
+
+
       
             default:
                 System.out.println("Invalid choice, please try again.");
