@@ -139,6 +139,6 @@ abstract public class Person{
 
   public abstract void viewAllUsers(Librarian librarian);
 
-  // public abstract void searchBook(ArrayList<Book> books);
+   public abstract void searchBook(ArrayList<Book> books);
 
 }

@@ -20,25 +20,42 @@ public class Librarian extends Person{
     Book book = search_book(Library.books);
 
     if (book.getQuantity() > 0) {
-      person.book_cart.add(book);
-      book.setQuantity(book.getQuantity() - 1);
-      System.out.println("Book " + book.getbook_Title() + " rented successfully by " + person.getFirstName() + " " + person.getLastName());
-    } 
-    else {
-      System.out.println("Sorry! " + book.getbook_Title() + " is not available");
-    }
-  }
+      Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the ID of the book to rent: ");
+        int bookId = scanner.nextInt();
 
-  @Override
+        Book book = null;
+        for (Book b : books) {
+            if (b.getBookID()==(bookId)) {
+                book = b;
+                break;
+            }
+        }
+
+        if (book == null) {
+            System.out.println("Book with ID " + Book.id + " not found");
+            return;
+        }
+
+        if (book.getQuantity() > 0) {
+            person.book_cart.add(book);
+            book.setQuantity(book.getQuantity() - 1);
+            System.out.println("Book " + book.getbook_Title() + " rented successfully by " + person.getFirstName() + " " + person.getLastName());
+        } else {
+            System.out.println("Sorry! " + book.getbook_Title() + " is not available");
+        }
+      
+
+  /*@Override
   // remove a book from cart
   public void removeBookFromCart(Person person){
     Book b = new Book();
     b = b.searchBookinCart(person);
     person.book_cart.remove(b);
-  }
+  }/* */
 
 
-  @Override
+ /*  @Override
   public Book search_book(ArrayList<Book> books) {
     System.out.print("Enter book Name or ID: ");
     String bookKey = scanner.nextLine();
@@ -52,24 +69,45 @@ public class Librarian extends Person{
     if (book == null) {
       System.out.println("Book not found.");
     }
-    return book;
+    return book;*/
   }
 
-  // @Override
-  // public void searchBook(ArrayList<Book> books) {
-  //   System.out.print("Enter book Name or ID: ");
-  //   String bookKey = scanner.nextLine();
-  //   Book book = null;
-  //   for (Book b : Library.books) {
-  //     if (b.getbook_Title().equals(bookKey) || b.getBookID() == Integer.parseInt(bookKey)) {
-  //       book = b;
-  //       b.displayBookInfo(book);
-  //     }
-  //   }
-  //   if (book == null) {
-  //     System.out.println("Book not found.");
-  //   }
-  // }
+  @Override
+  public Book search_book(ArrayList<Book> books) {
+      Scanner scanner = new Scanner(System.in);
+      System.out.println("Do you want to search by book title or ID? Enter 'title' or 'ID':");
+      String searchOption = scanner.nextLine();
+  
+      if (searchOption.equalsIgnoreCase("title")) {
+          System.out.println("Enter book title to search:");
+          String query = scanner.nextLine();
+  
+          for (Book book : books) {
+              if (book.getbook_Title().equalsIgnoreCase(query)) {
+                  return book;
+              }
+          }
+  
+          System.out.println("No book found with the given title.");
+      } else if (searchOption.equalsIgnoreCase("ID")) {
+          System.out.println("Enter book ID to search:");
+          int query = scanner.nextInt();
+  
+          for (Book book : books) {
+              if (book.getBookID() == query) {
+                  return book;
+              }
+          }
+  
+          System.out.println("No book found with the given ID.");
+      } else {
+          System.out.println("Invalid search option.");
+      }
+  
+      return null;
+  }
+  
+
 
   static void add_book(ArrayList<Book> books) {
 

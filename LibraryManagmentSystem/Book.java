@@ -98,11 +98,11 @@ public class Book {
     System.out.println("Book updated successfully");
   }
 
-  public Book searchBookinCart(Person person){
+  public static Book searchBookinCart(ArrayList<Book> books){
     System.out.print("Enter book Name or ID: ");
     String bookKey = scanner.nextLine();
     Book book = null;
-    for (Book b : person.book_cart) {
+    for (Book b : books.book_cart) {
       if (b.getbook_Title().equals(bookKey) || b.getBookID() == Integer.parseInt(bookKey)) {
         book = b;
         return book;
