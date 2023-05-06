@@ -13,7 +13,7 @@ public class AdminPage {
 
         
         while(true){
-        System.out.println("\nWelcome to the Admin Page");
+        System.out.println("\nWelcome to the Admin's Page");
         System.out.println("1. Add a new book");
         System.out.println("2. Remove a book");
         System.out.println("3. Update a book");

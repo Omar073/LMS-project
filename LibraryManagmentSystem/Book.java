@@ -68,11 +68,11 @@ public class Book {
 
   //display book info
   public static void displayBookInfo(Book b) {
-    System.out.println("Book Name: " + b.book_Title);
-    System.out.println("Book ID: " + b.book_ID + "\n");
-    System.out.println("Book Author: " + b.Author + "\n");
-    System.out.println("Book Price: " + b.Price + "\n");
-    System.out.println("Book Quantity: " + b.Quantity + "\n");
+    System.out.println("\nBook Name: " + b.book_Title);
+    System.out.println("Book ID: " + b.book_ID);
+    System.out.println("Book Author: " + b.Author);
+    System.out.println("Book Price: " + b.Price);
+    System.out.println("Book Quantity: " + b.Quantity);
   }
 
   // display all books
