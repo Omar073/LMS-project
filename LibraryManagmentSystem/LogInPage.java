@@ -15,9 +15,9 @@ public class LogInPage {
             try {
                 // Prompt user to enter their username and password
                 System.out.print("User ID: ");
-                userID = Integer.parseInt(scanner.nextLine());
+                userID = Integer.parseInt(scanner.nextLine().trim());
                 System.out.print("Password: ");
-                String password = scanner.nextLine();
+                String password = scanner.nextLine().trim();
                 validateCredentials(userID, password, Library.persons);
                 System.out.println("Login successful!");
                 printWelcomeMessage(userID, Library.persons);
@@ -30,7 +30,6 @@ public class LogInPage {
                 System.out.println("Please try again.");
             }
         }
-
 
     }
 

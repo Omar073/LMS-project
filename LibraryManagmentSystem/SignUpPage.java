@@ -10,16 +10,16 @@ public class SignUpPage {
         System.out.println("\nWelcome to the sign up page!\nPlease enter your personal details:");
         // Prompt user to enter their personal details
         System.out.print("First Name: ");
-        String firstName = scanner.nextLine();
+        String firstName = scanner.nextLine().trim();
         System.out.print("Last Name: ");
-        String lastName = scanner.nextLine();
+        String lastName = scanner.nextLine().trim();
         // this next gender part can be easily replaced in GUI by giving the user only two options to choose from
         String Gender = "";
         boolean validGender = false;
         while (!validGender) {
             System.out.print("Gender: ");
-            // Gender = scanner.nextLine().toLowerCase();
-            Gender = scanner.nextLine();
+            // Gender = scanner.nextLine().toLowerCase().trim();
+            Gender = scanner.nextLine().trim();
             if (Gender.equalsIgnoreCase("male") || Gender.equalsIgnoreCase("female")) {
                 validGender = true;
             } 
@@ -28,7 +28,7 @@ public class SignUpPage {
             }
         }   
         System.out.print("Address: ");
-        String Address = scanner.nextLine();
+        String Address = scanner.nextLine().trim();
         // Prompt user to enter their phone number
         int PhoneNumber = 0;
         // add exception to check if a user already has this phone number
@@ -36,7 +36,7 @@ public class SignUpPage {
         while (!validPhoneNumber) {
             try {
                 System.out.print("Phone Number: ");
-                PhoneNumber = Integer.parseInt(scanner.nextLine());
+                PhoneNumber = Integer.parseInt(scanner.nextLine().trim());
                 validPhoneNumber = true;
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a valid phone number.");
@@ -45,7 +45,7 @@ public class SignUpPage {
         }
 
         System.out.print("Email: ");
-        String email = scanner.nextLine();
+        String email = scanner.nextLine().trim();
 
         // Check if the user ID is already taken
         int userID = 0;
@@ -54,7 +54,7 @@ public class SignUpPage {
         while (userIDTaken) {
             try {
                 System.out.print("User ID: ");
-                userID = Integer.parseInt(scanner.nextLine());
+                userID = Integer.parseInt(scanner.nextLine().trim());
                 checkUserID(userID, Library.persons);
                 userIDTaken = false;
             } catch (UserIDAlreadyTakenException e) {
@@ -64,7 +64,7 @@ public class SignUpPage {
         }
 
         System.out.print("Password: ");
-        String password = scanner.nextLine();
+        String password = scanner.nextLine().trim();
 
 
 

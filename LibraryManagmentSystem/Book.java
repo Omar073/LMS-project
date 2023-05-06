@@ -85,22 +85,22 @@ public class Book {
   //Update book info
   public static void updateBook(Book b) {
     System.out.print("Enter new book name: ");
-    b.setbook_Title(scanner.nextLine());
+    b.setbook_Title(scanner.nextLine().trim());
     System.out.print("Enter new book ID: ");
-    b.setBookID(Integer.parseInt(scanner.nextLine()));
+    b.setBookID(Integer.parseInt(scanner.nextLine().trim()));
     System.out.print("Enter new book Author: ");
     b.setAuthor(scanner.nextLine());
     System.out.print("Enter new book Price: ");
-    b.setPrice(Integer.parseInt(scanner.nextLine()));
+    b.setPrice(Integer.parseInt(scanner.nextLine().trim()));
     System.out.print("Enter new book Quantity: ");
-    b.setQuantity(Integer.parseInt(scanner.nextLine()));
+    b.setQuantity(Integer.parseInt(scanner.nextLine().trim()));
     
     System.out.println("Book updated successfully");
   }
 
   public Book searchBookinCart(Person person){
     System.out.print("Enter book Name or ID: ");
-    String bookKey = scanner.nextLine();
+    String bookKey = scanner.nextLine().trim();
     Book book = null;
     for (Book b : person.book_cart) {
       if (b.getbook_Title().equalsIgnoreCase(bookKey) || b.getBookID() == Integer.parseInt(bookKey)) {

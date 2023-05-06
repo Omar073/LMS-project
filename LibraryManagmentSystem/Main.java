@@ -13,7 +13,7 @@ public class Main {
 
     // while (!validInput) {
     //   System.out.println("Enter '1' to log in or '2' to sign up:");
-    //   String input = scanner.nextLine();
+    //   String input = scanner.nextLine().trim();
     //   if (input.equals("1")) {
     //     LogInPage.Login();
     //     validInput = true;
@@ -30,8 +30,8 @@ public class Main {
 
     while (!validInput) {
         try {
-            System.out.println("Enter '1' to log in or '2' to sign up:");
-            choice = Integer.parseInt(scanner.nextLine());
+            System.out.print("Enter '1' to log in or '2' to sign up: ");
+            choice = Integer.parseInt(scanner.nextLine().trim());
             switch (choice) {
                 case 1:
                     LogInPage.Login();

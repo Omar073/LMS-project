@@ -45,27 +45,64 @@ public class Reader extends Person{
   }
 
 
+  // @Override
+  // public Book search_book(ArrayList<Book> books) {
+  //   System.out.print("Enter book Name or ID: ");
+  //   String bookKey = scanner.nextLine().trim();
+  //   Book book = null;
+  //   for (Book b : Library.books) {
+  //     if (b.getbook_Title().equalsIgnoreCase(bookKey) || b.getBookID() == Integer.parseInt(bookKey)) {
+  //       book = b;
+  //       return book;
+  //     }
+  //   }
+  //   if (book == null) {
+  //     System.out.println("Book not found.");
+  //   }
+  //   return book;
+  // }
+
+  //testing
   @Override
   public Book search_book(ArrayList<Book> books) {
     System.out.print("Enter book Name or ID: ");
-    String bookKey = scanner.nextLine();
+    String bookKey = scanner.nextLine().trim();
     Book book = null;
-    for (Book b : Library.books) {
-      if (b.getbook_Title().equalsIgnoreCase(bookKey) || b.getBookID() == Integer.parseInt(bookKey)) {
-        book = b;
-        return book;
+    boolean isId = true;
+
+    try {
+      int bookId = Integer.parseInt(bookKey);
+      for (Book b : Library.books) {
+        if (b.getBookID() == bookId) {
+          book = b;
+          isId = true;
+          break;
+        }
+      }
+    }catch (NumberFormatException e) {
+      isId = false;
+    }
+
+    if (!isId) {
+      for (Book b : Library.books) {
+        if (b.getbook_Title().equalsIgnoreCase(bookKey)) {
+          book = b;
+          break;
+        }
       }
     }
+
     if (book == null) {
       System.out.println("Book not found.");
     }
+
     return book;
   }
 
   @ Override
   public Person search_user(ArrayList<Person> persons){
     System.out.print("Enter user Name or ID: ");
-    String user_key = scanner.nextLine();
+    String user_key = scanner.nextLine().trim();
     Person person = null;
     for (Person p : Library.persons) {
       if (p.getuser_ID() == Integer.parseInt(user_key) || p.getFirstName().equalsIgnoreCase(user_key)) {

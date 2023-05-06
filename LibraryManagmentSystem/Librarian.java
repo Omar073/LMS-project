@@ -37,36 +37,73 @@ public class Librarian extends Person{
     person.book_cart.remove(b);
   }
 
+  // @Override
+  // public Book search_book(ArrayList<Book> books) {
+  //   System.out.print("Enter book Name or ID: ");
+  //   String bookKey = scanner.nextLine().trim();
+  //   Book book = null;
+  //   for (Book b : Library.books) {
+  //     if (b.getbook_Title().equalsIgnoreCase(bookKey) || b.getBookID() == Integer.parseInt(bookKey)) {
+  //       book = b;
+  //       return book;
+  //     }
+  //   }
+  //   if (book == null) {
+  //     System.out.println("Book not found.");
+  //   }
+  //   return book;
+  // }
 
+  //testing
   @Override
   public Book search_book(ArrayList<Book> books) {
     System.out.print("Enter book Name or ID: ");
-    String bookKey = scanner.nextLine();
+    String bookKey = scanner.nextLine().trim();
     Book book = null;
-    for (Book b : Library.books) {
-      if (b.getbook_Title().equalsIgnoreCase(bookKey) || b.getBookID() == Integer.parseInt(bookKey)) {
-        book = b;
-        return book;
+    boolean isId = true;
+
+    try {
+      int bookId = Integer.parseInt(bookKey);
+      for (Book b : Library.books) {
+        if (b.getBookID() == bookId) {
+          book = b;
+          isId = true;
+          break;
+        }
+      }
+    }catch (NumberFormatException e) {
+      isId = false;
+    }
+
+    if (!isId) {
+      for (Book b : Library.books) {
+        if (b.getbook_Title().equalsIgnoreCase(bookKey)) {
+          book = b;
+          break;
+        }
       }
     }
+
     if (book == null) {
       System.out.println("Book not found.");
     }
+
     return book;
   }
+
 
   static void add_book(ArrayList<Book> books) {
 
     System.out.print("Enter book name: ");
-    String bookName = scanner.nextLine();
+    String bookName = scanner.nextLine().trim();
     System.out.print("Enter book ID: ");
-    int bookId = Integer.parseInt(scanner.nextLine());
+    int bookId = Integer.parseInt(scanner.nextLine().trim());
     System.out.print("Enter book Author: ");
-    String bookAuthor = scanner.nextLine();
+    String bookAuthor = scanner.nextLine().trim();
     System.out.print("Enter book Price: ");
-    int bookPrice = Integer.parseInt(scanner.nextLine());
+    int bookPrice = Integer.parseInt(scanner.nextLine().trim());
     System.out.print("Enter book Quantity: ");
-    int bookQuantity = Integer.parseInt(scanner.nextLine());
+    int bookQuantity = Integer.parseInt(scanner.nextLine().trim());
     books.add(new Book(bookName, bookId, bookAuthor, bookPrice, bookQuantity));
     System.out.println("Book added successfully");
 
@@ -102,7 +139,7 @@ public class Librarian extends Person{
   @ Override
   public Person search_user(ArrayList<Person> persons){
     System.out.print("Enter user Name or ID: ");
-    String user_key = scanner.nextLine();
+    String user_key = scanner.nextLine().trim();
     Person person = null;
     for (Person p : Library.persons) {
       if (p.getuser_ID() == Integer.parseInt(user_key) || p.getFirstName().equalsIgnoreCase(user_key)) {
@@ -132,17 +169,17 @@ public class Librarian extends Person{
     p.setuser_ID(getuser_ID());
     // try to implement ID already taken
     System.out.print("Enter new Password: ");
-    p.setPassword(scanner.nextLine());
+    p.setPassword(scanner.nextLine().trim());
     System.out.print("Enter new First Name: ");
-    p.setFirstName(scanner.nextLine());
+    p.setFirstName(scanner.nextLine().trim());
     System.out.print("Enter new Last Name: ");
-    p.setLastName(scanner.nextLine());
+    p.setLastName(scanner.nextLine().trim());
     System.out.print("Enter new address: ");
-    p.setAddress(scanner.nextLine());
+    p.setAddress(scanner.nextLine().trim());
     System.out.print("Enter new Phone Number: ");
-    p.setPhoneNumber(Integer.parseInt(scanner.nextLine()));
+    p.setPhoneNumber(Integer.parseInt(scanner.nextLine().trim()));
     System.out.print("Enter new Email: ");
-    p.setEmail(scanner.nextLine());
+    p.setEmail(scanner.nextLine().trim());
     System.out.println("User updated successfully");
   }
 
