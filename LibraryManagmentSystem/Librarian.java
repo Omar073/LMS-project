@@ -136,22 +136,50 @@ public class Librarian extends Person{
     Book.updateBook(b);
   }
 
-  @ Override
+  // @ Override
+  // public Person search_user(ArrayList<Person> persons){
+  //   System.out.print("Enter user Name or ID you want to search for: ");
+  //   String user_key = scanner.nextLine().trim();
+  //   Person person = null;
+  //   for (Person p : Library.persons) {
+  //     if (p.getuser_ID() == Integer.parseInt(user_key) || p.getFirstName().equalsIgnoreCase(user_key)) {
+  //       person = p;
+  //       return person;
+  //     }
+  //   }
+  //   if (person == null) {
+  //     System.out.println("User not found.");
+  //   }
+  //   return person;
+  // }
+
+  @Override
   public Person search_user(ArrayList<Person> persons){
-    System.out.print("Enter user Name or ID: ");
+    System.out.print("Enter the FirstName or ID of the user you want to search for: ");
     String user_key = scanner.nextLine().trim();
     Person person = null;
-    for (Person p : Library.persons) {
-      if (p.getuser_ID() == Integer.parseInt(user_key) || p.getFirstName().equalsIgnoreCase(user_key)) {
-        person = p;
-        return person;
+    try {
+      int userID = Integer.parseInt(user_key);
+      for (Person p : persons) {
+        if (p.getuser_ID() == userID) {
+          person = p;
+          return person;
+        }
+      }
+    } 
+    catch (NumberFormatException e) {
+      // not a valid integer, search by name instead
+      for (Person p : persons) {
+        if (p.getFirstName().equalsIgnoreCase(user_key)) {
+          person = p;
+          return person;
+        }
       }
     }
-    if (person == null) {
-      System.out.println("User not found.");
-    }
+    System.out.println("User not found.");
     return person;
   }
+
   
   // removeUser
   public void removeUser(){
@@ -166,7 +194,7 @@ public class Librarian extends Person{
     Person p = null;
     p = search_user(Library.persons);
     System.out.print("Enter new ID: ");
-    p.setuser_ID(getuser_ID());
+    p.setuser_ID(Integer.parseInt(scanner.nextLine().trim()));
     // try to implement ID already taken
     System.out.print("Enter new Password: ");
     p.setPassword(scanner.nextLine().trim());
