@@ -50,13 +50,6 @@ public class SearchUsersGui extends Application {
             Search_key = textField.getText();
             Person person = null;
             boolean isId = true;
-            // for(Object item : list){
-            //     if(item instanceof Book){
-            //         if(((Book) item).getbook_Title().equalsIgnoreCase(Search_key) || ((Book) item).getBookID() == Integer.parseInt(Search_key)){
-            //             Book.displayBookInfo((Book) item);
-            //         }
-            //     }      for (Book b : Library.books) {
-            // }
             try {
                 for (Person p : Library.persons) {
                     if (p.getuser_ID() == Integer.parseInt(Search_key)) {
@@ -150,7 +143,6 @@ public class SearchUsersGui extends Application {
                             alert.setHeaderText(null);
                             alert.setContentText("User successfully deleted1");
                             alert.showAndWait();
-                            // break;
                         }
                     }
                     if (person == null) {
@@ -178,21 +170,21 @@ public class SearchUsersGui extends Application {
 
             root.getChildren().addAll(textField, label, searchButton, deleteButton, returnButton);
         }
-        else if(Type.equals("user")){
-            Button returnButton = new Button("Return");
-            returnButton.setLayoutX(285);
-            returnButton.setLayoutY(335);
-            returnButton.setPrefSize(83, 45);
-            returnButton.setOnAction(event -> {
-                //return to user page
-                // Stage adminStage = new Stage();
-                // AdminGUI adminGUI = new AdminGUI();
-                // adminGUI.start(adminStage);
-                primaryStage.close();
-            });
+        // else if(Type.equals("user")){
+        //     Button returnButton = new Button("Return");
+        //     returnButton.setLayoutX(285);
+        //     returnButton.setLayoutY(335);
+        //     returnButton.setPrefSize(83, 45);
+        //     returnButton.setOnAction(event -> {
+        //         //return to user page
+        //         // Stage adminStage = new Stage();
+        //         // AdminGUI adminGUI = new AdminGUI();
+        //         // adminGUI.start(adminStage);
+        //         primaryStage.close();
+        //     });
 
-            root.getChildren().addAll(textField, label, searchButton, returnButton);
-        }
+        //     root.getChildren().addAll(textField, label, searchButton, returnButton);
+        // }
         else if(Type.equals("admin") && Case.equals("block")){
 
             Button blockButton = new Button("Block");
@@ -202,16 +194,17 @@ public class SearchUsersGui extends Application {
             blockButton.setOnAction(event -> {
                 Search_key = textField.getText();
                 try{
-                for(Person p : Library.persons){
-                    if(p.getuser_ID() == Integer.parseInt(Search_key)){
-                        p.setIsBlocked(true);
-                        Alert alert = new Alert(AlertType.INFORMATION);
-                            alert.setTitle("User Blocked");
-                            alert.setHeaderText(null);
-                            alert.setContentText("User successfully blocked");
-                            alert.showAndWait();
+                    for(Person p : Library.persons){
+                        if(p.getuser_ID() == Integer.parseInt(Search_key)){
+                            p.setIsBlocked(true);
+                            Alert alert = new Alert(AlertType.INFORMATION);
+                                alert.setTitle("User Blocked");
+                                alert.setHeaderText(null);
+                                alert.setContentText("User successfully blocked");
+                                alert.showAndWait();
+                        }
                     }
-                }}
+                }
                 catch(NumberFormatException e){
                     for(Person p : Library.persons){
                         if(p.getFirstName().equalsIgnoreCase(Search_key)){
@@ -258,8 +251,10 @@ public class SearchUsersGui extends Application {
                 primaryStage.close();
             }
         });
-        root.getChildren().addAll(textField, label, searchButton, returnButton);
-
+        
+        if(Case.equals("search")){
+            root.getChildren().addAll(textField, label, searchButton, returnButton);
+        }
         Scene scene = new Scene(root, 687, 474);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Search Books GUI");
