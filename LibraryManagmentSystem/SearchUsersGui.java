@@ -96,6 +96,7 @@ public class SearchUsersGui extends Application {
                     alert.setTitle("Error");
                     alert.setHeaderText(null);
                     alert.setContentText("Book not found.");
+                    alert.showAndWait();
             }
         });
 
@@ -237,6 +238,7 @@ public class SearchUsersGui extends Application {
         returnButton.setLayoutX(285);
         returnButton.setLayoutY(335);
         returnButton.setPrefSize(83, 45);
+        //add root.get children here so that it would add children before clicking return button
         returnButton.setOnAction(event -> {
             if(Type.equals("admin") && Case.equals("search")){
                 Stage adminStage = new Stage();
