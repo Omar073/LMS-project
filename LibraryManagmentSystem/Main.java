@@ -7,9 +7,12 @@ public class Main {
 
     System.out.println("                 Welcome to the Library Management System!");
 
+    Library library = new Library();
+
+    MyHelloApp.main(args); //    GUI  
+
     Scanner scanner = new Scanner(System.in);
 
-    Library library = new Library();
 
     // while (!validInput) {
     //   System.out.println("Enter '1' to log in or '2' to sign up:");
@@ -25,31 +28,31 @@ public class Main {
     //   }
     // }
 
-    int choice = 0;
-    boolean validInput = false;
+    // int choice = 0;
+    // boolean validInput = false;
 
-    while (!validInput) {
-        try {
-            System.out.print("Enter '1' to log in or '2' to sign up: ");
-            choice = Integer.parseInt(scanner.nextLine().trim());
-            switch (choice) {
-                case 1:
-                    LogInPage.Login();
-                    validInput = true;
-                    break;
-                case 2:
-                    SignUpPage.SignUp();
-                    validInput = true;
-                    break;
-                default:
-                    System.out.println("Invalid input. Please enter '1' to log in or '2' to sign up.");
-                    break;
-            }
-        } catch (InputMismatchException e) {
-            System.out.println("Invalid input. Please enter '1' to log in or '2' to sign up.");
-            scanner.nextLine(); // consume the invalid input
-        }
-    }
+    // while (!validInput) {
+    //     try {
+    //         System.out.print("Enter '1' to log in or '2' to sign up: ");
+    //         choice = Integer.parseInt(scanner.nextLine().trim());
+    //         switch (choice) {
+    //             case 1:
+    //                 LogInPage.Login();
+    //                 validInput = true;
+    //                 break;
+    //             case 2:
+    //                 SignUpPage.SignUp();
+    //                 validInput = true;
+    //                 break;
+    //             default:
+    //                 System.out.println("Invalid input. Please enter '1' to log in or '2' to sign up.");
+    //                 break;
+    //         }
+    //     } catch (InputMismatchException e) {
+    //         System.out.println("Invalid input. Please enter '1' to log in or '2' to sign up.");
+    //         scanner.nextLine(); // consume the invalid input
+    //     }
+    // }
 
     scanner.close();
   }
