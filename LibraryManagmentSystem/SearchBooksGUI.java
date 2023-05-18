@@ -294,10 +294,18 @@ public class SearchBooksGUI extends Application {
         returnButton.setLayoutY(335);
         returnButton.setPrefSize(83, 45);
         returnButton.setOnAction(event -> {
-            Stage adminStage = new Stage();
-            AdminGUI adminGUI = new AdminGUI();
-            adminGUI.start(adminStage);
-            primaryStage.close();
+            if(Type.equals("admin") && Case.equals("search")){
+                Stage adminStage = new Stage();
+                AdminGUI adminGUI = new AdminGUI();
+                adminGUI.start(adminStage);
+                primaryStage.close();
+            }
+            else if(Type.equals("reader") && Case.equals("search")){
+                Stage readerStage = new Stage();
+                ReaderGUI readerGUI = new ReaderGUI();
+                readerGUI.start(readerStage);
+                primaryStage.close();
+            }
         });
 
         

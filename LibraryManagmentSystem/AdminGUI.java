@@ -56,15 +56,15 @@ public class AdminGUI extends Application{
             primaryStage.close();
         });
 
-        Button updateBookButton = new Button("Update a book");
-        updateBookButton.setLayoutX(498.0);
-        updateBookButton.setLayoutY(91.0);
-        updateBookButton.setOnAction(event -> {
-            SearchBooksGUI searchbooksGUI = new SearchBooksGUI("admin", "search");
-            Stage searchbooksstage = new Stage();
-            searchbooksGUI.start(searchbooksstage);
-            primaryStage.close();
-        });
+        // Button updateBookButton = new Button("Update a book");
+        // updateBookButton.setLayoutX(498.0);
+        // updateBookButton.setLayoutY(91.0);
+        // updateBookButton.setOnAction(event -> {
+        //     SearchBooksGUI searchbooksGUI = new SearchBooksGUI("admin", "search");
+        //     Stage searchbooksstage = new Stage();
+        //     searchbooksGUI.start(searchbooksstage);
+        //     primaryStage.close();
+        // });
 
         Button addUserButton = new Button("Add new user");
         addUserButton.setLayoutX(74.0);
@@ -178,7 +178,7 @@ public class AdminGUI extends Application{
             System.exit(0);
         });
 
-        root.getChildren().addAll(adminLabel, addBookButton, removeBookButton, updateBookButton, addUserButton,
+        root.getChildren().addAll(adminLabel, addBookButton, removeBookButton, addUserButton,
                 removeUserButton, viewBooksButton, viewUsersButton, searchUsersButton,
                 searchBooksButton, viewCartButton, addToCartButton, blockUserButton,
                 logoutButton);

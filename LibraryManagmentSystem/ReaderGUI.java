@@ -51,7 +51,7 @@ public class ReaderGUI extends Application {
         searchBooksButton.setLayoutX(290.0);
         searchBooksButton.setLayoutY(291.0);
         searchBooksButton.setOnAction(event -> {
-            SearchBooksGUI searchbooksGUI = new SearchBooksGUI("admin", "search");
+            SearchBooksGUI searchbooksGUI = new SearchBooksGUI("reader", "search");
             Stage searchbooksstage = new Stage();
             searchbooksGUI.start(searchbooksstage);
             primaryStage.close();
