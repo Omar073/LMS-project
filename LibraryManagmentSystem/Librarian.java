@@ -11,7 +11,7 @@ public class Librarian extends Person{
 
   //constructor
   public Librarian(String FirstName, String LastName, String Gender, String Address, int PhoneNumber, String Email, int user_ID, String password, boolean isAdmin, boolean isBlocked) {
-    // super(user_ID, password, isAdmin, FirstName, LastName, Gender, Address, PhoneNumber, Email, isBlocked);
+    super(FirstName, LastName, Gender, Address, PhoneNumber, Email, user_ID, password, isAdmin, isBlocked);
   }
 
   // @Override
