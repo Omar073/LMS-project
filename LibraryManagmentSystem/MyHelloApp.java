@@ -75,8 +75,12 @@ public class MyHelloApp extends Application {
         });
 
         Button signupButton = new Button("Signup");
-        signupButton.setOnAction(event -> SignUpPage.SignUp());
-
+        signupButton.setOnAction(event -> {
+            Stage signupstage = new Stage();
+            SignUpGUI signupgui = new SignUpGUI();
+            signupgui.start(signupstage);
+            primaryStage.close();
+        });
         // PasswordField passwordField = new PasswordField();
         // passwordField.setPromptText("Password");
 

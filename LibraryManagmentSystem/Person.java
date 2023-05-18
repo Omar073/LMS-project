@@ -19,7 +19,7 @@ abstract public class Person{
   }
 
   //constructor
-  public Person(int user_ID, String password, boolean isAdmin, String FirstName, String LastName, String Gender, String Address, int PhoneNumber, String Email, boolean isBlocked) {
+  public Person(String FirstName, String LastName, String Gender, String Address, int PhoneNumber, String Email, int user_ID, String password, boolean isBlocked, boolean isAdmin) {
     this.user_ID = user_ID;
     this.password = password;
     this.isAdmin = isAdmin;
@@ -118,25 +118,27 @@ abstract public class Person{
     return this.isBlocked;
   }
 
-  // rent a book
-  public abstract void rent_book(Person person, ArrayList<Person> persons, ArrayList<Book> books);
-
-  // search for a book
-  public abstract Book search_book(ArrayList<Book> books);
-  
-  // remove a book from cart
-  public abstract void removeBookFromCart(Person person);
-
   // get cart
   public ArrayList<Book> getCart(){
 
     return book_cart;
   }
 
-  public abstract Person search_user(ArrayList<Person> persons);
+  // // rent a book
+  // public abstract void rent_book(Person person, ArrayList<Person> persons, ArrayList<Book> books);
 
-  public abstract void displayPersonInfo(Person p);
+  // // search for a book
+  // public abstract Book search_book(ArrayList<Book> books);
+  
+  // // remove a book from cart
+  // public abstract void removeBookFromCart(Person person);
 
-  public abstract void viewAllUsers(Librarian librarian);
+
+
+  // public abstract Person search_user(ArrayList<Person> persons);
+
+  // public abstract void displayPersonInfo(Person p);
+
+  // public abstract void viewAllUsers(Librarian librarian);
 
 }

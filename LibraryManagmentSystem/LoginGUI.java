@@ -3,6 +3,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ButtonBar;
@@ -10,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class LoginGUI extends Application {
@@ -22,31 +24,36 @@ public class LoginGUI extends Application {
         Pane root = new Pane();
 
         PasswordField passwordField = new PasswordField();
-        passwordField.setLayoutX(229.0);
+        passwordField.setLayoutX(250.0);
         passwordField.setLayoutY(163.0);
         passwordField.setPromptText("Password");
 
         TextField idField = new TextField();
-        idField.setLayoutX(229.0);
+        idField.setLayoutX(250.0);
         idField.setLayoutY(107.0);
         idField.setPromptText("ID");
 
         Label loginLabel = new Label("Login Page");
-        loginLabel.setLayoutX(215.0);
-        loginLabel.setLayoutY(30.0);
+        loginLabel.setLayoutX(247.0);
+        loginLabel.setLayoutY(14.0);
         loginLabel.setPrefSize(177.0, 45.0);
-        loginLabel.setStyle("-fx-background-color: blue;");
-        loginLabel.setTextFill(javafx.scene.paint.Color.RED);
+        loginLabel.setStyle("-fx-background-color: black;");
+        loginLabel.setTextFill(javafx.scene.paint.Color.WHITE);
         loginLabel.setAlignment(javafx.geometry.Pos.CENTER);
         loginLabel.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
+        loginLabel.setFont(new Font(20.0));
+        loginLabel.setEffect(new ColorAdjust());
 
         Button loginButton = new Button("Login");
-        loginButton.setLayoutX(263.0);
+        loginButton.setLayoutX(280.0);
         loginButton.setLayoutY(246.0);
         loginButton.setOnAction(event -> {
+            // enteredPassword = "726";
+            // enteredID = "007";
             enteredPassword = passwordField.getText();
             enteredID = idField.getText();
-            boolean validCredentials = validateCredentials(Integer.parseInt(enteredID), enteredPassword , Library.persons, primaryStage);
+            // boolean validCredentials = validateCredentials(Integer.parseInt(enteredID), enteredPassword , Library.persons, primaryStage);
+            validateCredentials(Integer.parseInt(enteredID), enteredPassword , Library.persons, primaryStage);
         });
 
         root.getChildren().addAll(passwordField, idField, loginLabel, loginButton);
@@ -76,7 +83,7 @@ public class LoginGUI extends Application {
                 isValidPassword = true;
                 showSuccessAlert(person.getFirstName());
                 Stage readerStage = new Stage();
-                ReaderGUI readerGUI = new ReaderGUI();
+                ReaderGUI readerGUI = new ReaderGUI(person);
                 readerGUI.start(readerStage);
                 primaryStage.close();
             }
