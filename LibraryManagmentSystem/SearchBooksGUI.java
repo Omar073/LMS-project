@@ -194,7 +194,7 @@ public class SearchBooksGUI extends Application {
 
             root.getChildren().addAll(textField, label, searchButton, deleteButton, returnButton);
         }
-        else if (Type.equals("admin") && Case.equals("addtocart")){
+        else if (Case.equals("addtocart")){
             Button addtocartbutton = new Button("Add To Cart");
             addtocartbutton.setLayoutX(364);
             addtocartbutton.setLayoutY(165);
@@ -257,10 +257,18 @@ public class SearchBooksGUI extends Application {
             returnButton.setLayoutY(335);
             returnButton.setPrefSize(83, 45);
             returnButton.setOnAction(event -> {
+                if(Type.equals("admin")){
                 Stage adminStage = new Stage();
                 AdminGUI adminGUI = new AdminGUI();
                 adminGUI.start(adminStage);
                 primaryStage.close();
+                }
+                else if(Type.equals("reader")){
+                    Stage readerStage = new Stage();
+                    ReaderGUI readerGUI = new ReaderGUI(person);
+                    readerGUI.start(readerStage);
+                    primaryStage.close();
+                }
             });
                 
             root.getChildren().addAll(textField, label, searchButton, addtocartbutton, returnButton);
