@@ -95,7 +95,7 @@ public class SearchUsersGui extends Application {
                 Alert alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Error");
                     alert.setHeaderText(null);
-                    alert.setContentText("Book not found.");
+                    alert.setContentText("User not found.");
                     alert.showAndWait();
             }
         });
