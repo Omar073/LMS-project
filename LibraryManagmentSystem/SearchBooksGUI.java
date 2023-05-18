@@ -96,28 +96,29 @@ public class SearchBooksGUI extends Application {
         
             if (!isId) {
                 for (Book b : Library.books) {
-                if (b.getbook_Title().equalsIgnoreCase(Search_key)) {
-                    book = b;
-                    Alert alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Book Information");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Book Name: " + book.getbook_Title()
-                            + "\nBook ID: " + book.getBookID()
-                            + "\nBook Author: " + book.getAuthor()
-                            + "\nBook Price: " + book.getPrice()
-                            + "\nBook Quantity: " + book.getQuantity());
+                    if (b.getbook_Title().equalsIgnoreCase(Search_key)) {
+                        book = b;
+                        Alert alert = new Alert(AlertType.INFORMATION);
+                        alert.setTitle("Book Information");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Book Name: " + book.getbook_Title()
+                                + "\nBook ID: " + book.getBookID()
+                                + "\nBook Author: " + book.getAuthor()
+                                + "\nBook Price: " + book.getPrice()
+                                + "\nBook Quantity: " + book.getQuantity());
 
-                    alert.showAndWait();
-                    // break;
-                }
+                        alert.showAndWait();
+                        // break;
+                    }
                 }
             }
         
             if (book == null) {
                 Alert alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Book not found.");
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Book not found.");
+                alert.showAndWait();
             }
         });
 

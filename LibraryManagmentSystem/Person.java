@@ -19,7 +19,7 @@ abstract public class Person{
   }
 
   //constructor
-  public Person(String FirstName, String LastName, String Gender, String Address, int PhoneNumber, String Email, int user_ID, String password, boolean isBlocked, boolean isAdmin) {
+  public Person(String FirstName, String LastName, String Gender, String Address, int PhoneNumber, String Email, int user_ID, String password, boolean isAdmin, boolean isBlocked) {
     this.user_ID = user_ID;
     this.password = password;
     this.isAdmin = isAdmin;
