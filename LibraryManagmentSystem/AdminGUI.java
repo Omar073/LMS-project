@@ -9,7 +9,17 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class AdminGUI extends Application {
+public class AdminGUI extends Application{
+    
+    static private Person person = null;
+
+    //constructor
+    public AdminGUI(Person person) {
+        this.person = person;
+    }
+
+    //default constructor
+    public AdminGUI() {}
 
     @Override
     public void start(Stage primaryStage) {
@@ -29,38 +39,56 @@ public class AdminGUI extends Application {
         Button addBookButton = new Button("Add new book");
         addBookButton.setLayoutX(72.0);
         addBookButton.setLayoutY(91.0);
+        addBookButton.setOnAction(event -> {
+            NewBook newbook = new NewBook("add");
+            Stage newbooksstage = new Stage();
+            newbook.start(newbooksstage);
+            primaryStage.close();
+        });
 
         Button removeBookButton = new Button("Remove a book");
         removeBookButton.setLayoutX(286.0);
         removeBookButton.setLayoutY(91.0);
         removeBookButton.setOnAction(event -> {
-            SearchBooksGUI searchbooksGUI = new SearchBooksGUI("admin");
+            SearchBooksGUI searchbooksGUI = new SearchBooksGUI("admin", "delete");
             Stage searchbooksstage = new Stage();
             searchbooksGUI.start(searchbooksstage);
             primaryStage.close();
         });
 
-        Button updateBookButton = new Button("Update a book");
-        updateBookButton.setLayoutX(498.0);
-        updateBookButton.setLayoutY(91.0);
+        // Button updateBookButton = new Button("Update a book");
+        // updateBookButton.setLayoutX(498.0);
+        // updateBookButton.setLayoutY(91.0);
+        // updateBookButton.setOnAction(event -> {
+        //     SearchBooksGUI searchbooksGUI = new SearchBooksGUI("admin", "search");
+        //     Stage searchbooksstage = new Stage();
+        //     searchbooksGUI.start(searchbooksstage);
+        //     primaryStage.close();
+        // });
 
         Button addUserButton = new Button("Add new user");
         addUserButton.setLayoutX(74.0);
         addUserButton.setLayoutY(157.0);
+        addUserButton.setOnAction(event -> {
+            Stage signupstage = new Stage();
+            SignUpGUI signupgui = new SignUpGUI();
+            signupgui.start(signupstage);
+            primaryStage.close();
+        });
 
         Button removeUserButton = new Button("Remove a user");
         removeUserButton.setLayoutX(288.0);
         removeUserButton.setLayoutY(157.0);
         removeUserButton.setOnAction(event -> {
-            SearchUsersGui searchusersGUI = new SearchUsersGui("admin");
+            SearchUsersGui searchusersGUI = new SearchUsersGui("admin", "delete");
             Stage searchusersstage = new Stage();
             searchusersGUI.start(searchusersstage);
             primaryStage.close();
         });
 
-        Button updateUserButton = new Button("Update a user");
-        updateUserButton.setLayoutX(500.0);
-        updateUserButton.setLayoutY(157.0);
+        // Button updateUserButton = new Button("Update a user");
+        // updateUserButton.setLayoutX(500.0);
+        // updateUserButton.setLayoutY(157.0);
 
         Button viewBooksButton = new Button("View all books");
         viewBooksButton.setLayoutX(73.0);
@@ -87,7 +115,7 @@ public class AdminGUI extends Application {
         searchUsersButton.setLayoutX(504.0);
         searchUsersButton.setLayoutY(225.0);
         searchUsersButton.setOnAction(event -> {
-            SearchUsersGui searchusersGUI = new SearchUsersGui("admin");
+            SearchUsersGui searchusersGUI = new SearchUsersGui("admin", "search");
             Stage searchusersstage = new Stage();
             searchusersGUI.start(searchusersstage);
             primaryStage.close();
@@ -97,7 +125,7 @@ public class AdminGUI extends Application {
         searchBooksButton.setLayoutX(75.0);
         searchBooksButton.setLayoutY(284.0);
         searchBooksButton.setOnAction(event -> {
-            SearchBooksGUI searchbooksGUI = new SearchBooksGUI("admin");
+            SearchBooksGUI searchbooksGUI = new SearchBooksGUI("admin", "search");
             Stage searchbooksstage = new Stage();
             searchbooksGUI.start(searchbooksstage);
             primaryStage.close();
@@ -106,18 +134,36 @@ public class AdminGUI extends Application {
         Button viewCartButton = new Button("View cart");
         viewCartButton.setLayoutX(302.0);
         viewCartButton.setLayoutY(284.0);
+        viewCartButton.setOnAction(event -> {
+            DisplayListGUI displayListGUI = new DisplayListGUI(person.getCart());
+            Stage displaybooksstage = new Stage();
+            displayListGUI.start(displaybooksstage);
+            primaryStage.close();
+        });
 
         Button addToCartButton = new Button("Add to cart");
         addToCartButton.setLayoutX(507.0);
         addToCartButton.setLayoutY(284.0);
+        addToCartButton.setOnAction(event -> {
+            SearchBooksGUI searchbooksGUI = new SearchBooksGUI("admin", "addtocart", person);
+            Stage searchbooksstage = new Stage();
+            searchbooksGUI.start(searchbooksstage);
+            primaryStage.close();
+        });
 
-        Button removeBookFromCartButton = new Button("Remove book from cart");
-        removeBookFromCartButton.setLayoutX(72.0);
-        removeBookFromCartButton.setLayoutY(340.0);
+        // Button removeBookFromCartButton = new Button("Remove book from cart");
+        // removeBookFromCartButton.setLayoutX(72.0);
+        // removeBookFromCartButton.setLayoutY(340.0);
 
         Button blockUserButton = new Button("Block user");
         blockUserButton.setLayoutX(510.0);
         blockUserButton.setLayoutY(340.0);
+        blockUserButton.setOnAction(event -> {
+            SearchUsersGui searchusersGUI = new SearchUsersGui("admin", "block");
+            Stage searchusersstage = new Stage();
+            searchusersGUI.start(searchusersstage);
+            primaryStage.close();
+        });
 
         Button logoutButton = new Button("Logout");
         logoutButton.setLayoutX(307.0);
@@ -129,11 +175,12 @@ public class AdminGUI extends Application {
             // alert.setContentText("Welcome to the Library Management System!");
             alert.setContentText("Logged out successfully!");
             alert.showAndWait();
-            System.exit(0);});
+            System.exit(0);
+        });
 
-        root.getChildren().addAll(adminLabel, addBookButton, removeBookButton, updateBookButton, addUserButton,
-                removeUserButton, updateUserButton, viewBooksButton, viewUsersButton, searchUsersButton,
-                searchBooksButton, viewCartButton, addToCartButton, removeBookFromCartButton, blockUserButton,
+        root.getChildren().addAll(adminLabel, addBookButton, removeBookButton, addUserButton,
+                removeUserButton, viewBooksButton, viewUsersButton, searchUsersButton,
+                searchBooksButton, viewCartButton, addToCartButton, blockUserButton,
                 logoutButton);
 
         Scene scene = new Scene(root, 687, 474);

@@ -11,7 +11,6 @@ public class Main {
 
     MyHelloApp.main(args); //    GUI  
 
-    Scanner scanner = new Scanner(System.in);
 
 
     // while (!validInput) {
@@ -54,6 +53,5 @@ public class Main {
     //     }
     // }
 
-    scanner.close();
   }
 }
