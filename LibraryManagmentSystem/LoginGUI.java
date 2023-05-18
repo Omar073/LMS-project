@@ -48,8 +48,6 @@ public class LoginGUI extends Application {
         loginButton.setLayoutX(280.0);
         loginButton.setLayoutY(246.0);
         loginButton.setOnAction(event -> {
-            // enteredPassword = "726";
-            // enteredID = "007";
             enteredPassword = passwordField.getText();
             enteredID = idField.getText();
             // boolean validCredentials = validateCredentials(Integer.parseInt(enteredID), enteredPassword , Library.persons, primaryStage);
