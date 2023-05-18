@@ -19,8 +19,7 @@ public class AdminGUI extends Application{
     }
 
     //default constructor
-    public AdminGUI() {
-    }
+    public AdminGUI() {}
 
     @Override
     public void start(Stage primaryStage) {

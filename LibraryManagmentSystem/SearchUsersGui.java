@@ -239,20 +239,26 @@ public class SearchUsersGui extends Application {
             root.getChildren().addAll(textField, label, searchButton, blockButton, returnButton);
         }
 
-        if(Type.equals("admin") && Case.equals("search")){
-            Button returnButton = new Button("Return");
-            returnButton.setLayoutX(285);
-            returnButton.setLayoutY(335);
-            returnButton.setPrefSize(83, 45);
-            returnButton.setOnAction(event -> {
+        
+        Button returnButton = new Button("Return");
+        returnButton.setLayoutX(285);
+        returnButton.setLayoutY(335);
+        returnButton.setPrefSize(83, 45);
+        returnButton.setOnAction(event -> {
+            if(Type.equals("admin") && Case.equals("search")){
                 Stage adminStage = new Stage();
                 AdminGUI adminGUI = new AdminGUI();
                 adminGUI.start(adminStage);
                 primaryStage.close();
-            });
-            root.getChildren().addAll(textField, label, searchButton, returnButton);
-
-        }
+            }
+            else if(Type.equals("reader") && Case.equals("search")){
+                Stage readerStage = new Stage();
+                ReaderGUI readerGUI = new ReaderGUI();
+                readerGUI.start(readerStage);
+                primaryStage.close();
+            }
+        });
+        root.getChildren().addAll(textField, label, searchButton, returnButton);
 
         Scene scene = new Scene(root, 687, 474);
         primaryStage.setScene(scene);

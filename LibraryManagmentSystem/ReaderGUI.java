@@ -18,9 +18,8 @@ public class ReaderGUI extends Application {
         this.person = person;
     }   
 
-    //default constructor
-    // public ReaderGUI() {
-    // }
+    // default constructor
+    public ReaderGUI() {}
 
 
     @Override
@@ -86,7 +85,7 @@ public class ReaderGUI extends Application {
         searchUsersButton.setLayoutX(499.0);
         searchUsersButton.setLayoutY(292.0);
         searchUsersButton.setOnAction(event -> {
-            SearchUsersGui searchusersGUI = new SearchUsersGui("admin", "search");
+            SearchUsersGui searchusersGUI = new SearchUsersGui("reader", "search");
             Stage searchusersstage = new Stage();
             searchusersGUI.start(searchusersstage);
             primaryStage.close();
