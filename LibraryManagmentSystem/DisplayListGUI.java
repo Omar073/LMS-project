@@ -62,6 +62,7 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -83,6 +84,7 @@ public class DisplayListGUI extends Application {
         // Convert the ArrayList to an ObservableList of Strings
         ObservableList<String> items = FXCollections.observableArrayList();
 
+        
         // Add each item in the ArrayList to the ObservableList
         for (Object item : list) {
             if (item instanceof Book) {
@@ -90,6 +92,15 @@ public class DisplayListGUI extends Application {
             } else if (item instanceof Person) {
                 displayPersonInfo((Person) item, items);
             }
+        }
+
+        // Check if the list is empty
+        if (items.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Empty List");
+            alert.setHeaderText(null);
+            alert.setContentText("The list is empty.");
+            alert.showAndWait();
         }
 
         // Set the ObservableList as the items of the ListView

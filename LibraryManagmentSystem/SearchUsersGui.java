@@ -15,10 +15,12 @@ public class SearchUsersGui extends Application {
     private ArrayList<?> list; // ArrayList containing either an array of Persons or an array of Books
     private String Type;
     private String Search_key;
+    private String Case;
 
-    public SearchUsersGui(String Type) {
+    public SearchUsersGui(String Type, String Case) {
         // this.list = list;
         this.Type = Type;
+        this.Case = Case;
     }
 
     @Override
@@ -104,7 +106,7 @@ public class SearchUsersGui extends Application {
             }
         });
 
-        if(Type.equals("admin")){
+        if(Type.equals("admin") && Case.equals("delete")){
             Button deleteButton = new Button("Delete");
             deleteButton.setLayoutX(364);
             deleteButton.setLayoutY(165);
@@ -190,6 +192,51 @@ public class SearchUsersGui extends Application {
             });
 
             root.getChildren().addAll(textField, label, searchButton, returnButton);
+        }
+        else if(Type.equals("admin") && Case.equals("block")){
+
+            Button blockButton = new Button("Block");
+            blockButton.setLayoutX(364);
+            blockButton.setLayoutY(165);
+            blockButton.setPrefSize(74, 34);
+            blockButton.setOnAction(event -> {
+                Search_key = textField.getText();
+                try{
+                for(Person p : Library.persons){
+                    if(p.getuser_ID() == Integer.parseInt(Search_key)){
+                        p.setIsBlocked(true);
+                        Alert alert = new Alert(AlertType.INFORMATION);
+                            alert.setTitle("User Blocked");
+                            alert.setHeaderText(null);
+                            alert.setContentText("User successfully blocked");
+                            alert.showAndWait();
+                    }
+                }}
+                catch(NumberFormatException e){
+                    for(Person p : Library.persons){
+                        if(p.getFirstName().equalsIgnoreCase(Search_key)){
+                            p.setIsBlocked(true);
+                            Alert alert = new Alert(AlertType.INFORMATION);
+                            alert.setTitle("User Blocked");
+                            alert.setHeaderText(null);
+                            alert.setContentText("User successfully blocked");
+                            alert.showAndWait();
+                        }
+                    }
+                }
+            });
+            Button returnButton = new Button("Return");
+            returnButton.setLayoutX(285);
+            returnButton.setLayoutY(335);
+            returnButton.setPrefSize(83, 45);
+            returnButton.setOnAction(event -> {
+                Stage adminStage = new Stage();
+                AdminGUI adminGUI = new AdminGUI();
+                adminGUI.start(adminStage);
+                primaryStage.close();
+            });
+
+            root.getChildren().addAll(textField, label, searchButton, blockButton, returnButton);
         }
 
         Scene scene = new Scene(root, 687, 474);

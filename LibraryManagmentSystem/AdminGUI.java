@@ -9,7 +9,18 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class AdminGUI extends Application {
+public class AdminGUI extends Application{
+    
+    private Person person = null;
+
+    //constructor
+    public AdminGUI(Person person) {
+        this.person = person;
+    }
+
+    //default constructor
+    public AdminGUI() {
+    }
 
     @Override
     public void start(Stage primaryStage) {
@@ -52,7 +63,7 @@ public class AdminGUI extends Application {
         removeUserButton.setLayoutX(288.0);
         removeUserButton.setLayoutY(157.0);
         removeUserButton.setOnAction(event -> {
-            SearchUsersGui searchusersGUI = new SearchUsersGui("admin");
+            SearchUsersGui searchusersGUI = new SearchUsersGui("admin", "delete");
             Stage searchusersstage = new Stage();
             searchusersGUI.start(searchusersstage);
             primaryStage.close();
@@ -87,7 +98,7 @@ public class AdminGUI extends Application {
         searchUsersButton.setLayoutX(504.0);
         searchUsersButton.setLayoutY(225.0);
         searchUsersButton.setOnAction(event -> {
-            SearchUsersGui searchusersGUI = new SearchUsersGui("admin");
+            SearchUsersGui searchusersGUI = new SearchUsersGui("admin", "search");
             Stage searchusersstage = new Stage();
             searchusersGUI.start(searchusersstage);
             primaryStage.close();
@@ -106,6 +117,12 @@ public class AdminGUI extends Application {
         Button viewCartButton = new Button("View cart");
         viewCartButton.setLayoutX(302.0);
         viewCartButton.setLayoutY(284.0);
+        viewCartButton.setOnAction(event -> {
+            DisplayListGUI displayListGUI = new DisplayListGUI(person.getCart());
+            Stage displaybooksstage = new Stage();
+            displayListGUI.start(displaybooksstage);
+            primaryStage.close();
+        });
 
         Button addToCartButton = new Button("Add to cart");
         addToCartButton.setLayoutX(507.0);
@@ -118,6 +135,12 @@ public class AdminGUI extends Application {
         Button blockUserButton = new Button("Block user");
         blockUserButton.setLayoutX(510.0);
         blockUserButton.setLayoutY(340.0);
+        blockUserButton.setOnAction(event -> {
+            SearchUsersGui searchusersGUI = new SearchUsersGui("admin", "block");
+            Stage searchusersstage = new Stage();
+            searchusersGUI.start(searchusersstage);
+            primaryStage.close();
+        });
 
         Button logoutButton = new Button("Logout");
         logoutButton.setLayoutX(307.0);

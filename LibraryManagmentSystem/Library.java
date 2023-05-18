@@ -38,5 +38,16 @@ public class Library {
         books.add(new Book("Python Programming", 2345, "Dariel Adams", 40, 50));
         books.add(new Book("OOP in JAVA", 7203, "Omar Ahmed", 200, 5));
 
+        persons.get(3).book_cart.add(books.get(2));
+        persons.get(3).book_cart.add(books.get(4));
+        persons.get(3).book_cart.add(books.get(3));
+        persons.get(2).book_cart.add(books.get(2));
+        persons.get(2).book_cart.add(books.get(4));
+        persons.get(2).book_cart.add(books.get(3));
+        persons.get(0).book_cart.add(books.get(2));
+        persons.get(0).book_cart.add(books.get(4));
+        persons.get(0).book_cart.add(books.get(3));
+
+
     }
 }
