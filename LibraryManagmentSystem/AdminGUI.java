@@ -71,7 +71,7 @@ public class AdminGUI extends Application{
         addUserButton.setLayoutY(157.0);
         addUserButton.setOnAction(event -> {
             Stage signupstage = new Stage();
-            SignUpGUI signupgui = new SignUpGUI();
+            SignUpGUI signupgui = new SignUpGUI("create");
             signupgui.start(signupstage);
             primaryStage.close();
         });
@@ -94,7 +94,7 @@ public class AdminGUI extends Application{
         viewBooksButton.setLayoutX(73.0);
         viewBooksButton.setLayoutY(225.0);
         viewBooksButton.setOnAction(event -> {
-            DisplayListGUI displayListGUI = new DisplayListGUI(Library.books);
+            DisplayListGUI displayListGUI = new DisplayListGUI(Library.books, "admin");
             Stage displaybooksstage = new Stage();
             displayListGUI.start(displaybooksstage);
             primaryStage.close();
@@ -105,7 +105,7 @@ public class AdminGUI extends Application{
         viewUsersButton.setLayoutX(291.0);
         viewUsersButton.setLayoutY(225.0);
         viewUsersButton.setOnAction(event -> {
-            DisplayListGUI displayListGUI = new DisplayListGUI(Library.persons);
+            DisplayListGUI displayListGUI = new DisplayListGUI(Library.persons, "admin");
             Stage displayusersstage = new Stage();
             displayListGUI.start(displayusersstage);
             primaryStage.close();
@@ -135,7 +135,7 @@ public class AdminGUI extends Application{
         viewCartButton.setLayoutX(302.0);
         viewCartButton.setLayoutY(284.0);
         viewCartButton.setOnAction(event -> {
-            DisplayListGUI displayListGUI = new DisplayListGUI(person.getCart());
+            DisplayListGUI displayListGUI = new DisplayListGUI(person.getCart(), "admin");
             Stage displaybooksstage = new Stage();
             displayListGUI.start(displaybooksstage);
             primaryStage.close();

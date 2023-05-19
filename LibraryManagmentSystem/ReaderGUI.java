@@ -41,7 +41,7 @@ public class ReaderGUI extends Application {
         viewBooksButton.setLayoutX(72.0);
         viewBooksButton.setLayoutY(138.0);
         viewBooksButton.setOnAction(event -> {
-            DisplayListGUI displayListGUI = new DisplayListGUI(Library.books);
+            DisplayListGUI displayListGUI = new DisplayListGUI(Library.books, "reader");
             Stage displaybooksstage = new Stage();
             displayListGUI.start(displaybooksstage);
             primaryStage.close();
@@ -65,7 +65,7 @@ public class ReaderGUI extends Application {
         viewCartButton.setLayoutX(303.0);
         viewCartButton.setLayoutY(138.0);
         viewCartButton.setOnAction(event -> {
-            DisplayListGUI displayListGUI = new DisplayListGUI(person.book_cart);
+            DisplayListGUI displayListGUI = new DisplayListGUI(person.book_cart, "reader");
             Stage displayListStage = new Stage();
             displayListGUI.start(displayListStage);
             primaryStage.close();

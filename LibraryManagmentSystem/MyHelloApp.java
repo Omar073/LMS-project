@@ -77,7 +77,7 @@ public class MyHelloApp extends Application {
         Button signupButton = new Button("Signup");
         signupButton.setOnAction(event -> {
             Stage signupstage = new Stage();
-            SignUpGUI signupgui = new SignUpGUI();
+            SignUpGUI signupgui = new SignUpGUI("signup");
             signupgui.start(signupstage);
             primaryStage.close();
         });
