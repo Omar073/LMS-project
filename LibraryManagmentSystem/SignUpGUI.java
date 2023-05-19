@@ -14,6 +14,12 @@ import javafx.stage.Stage;
 
 public class SignUpGUI extends Application {
 
+    private String action;
+
+    public SignUpGUI(String action) {
+        this.action = action;
+    }
+
     @Override
     public void start(Stage primaryStage) {
         Pane root = new Pane();
@@ -107,12 +113,27 @@ public class SignUpGUI extends Application {
             primaryStage.close();
         });
 
+        Button returnButton = new Button("Return");
+        returnButton.setLayoutX(200);
+        returnButton.setLayoutY(335);
+        returnButton.setPrefSize(83, 45);
+        returnButton.setOnAction(event -> {
+            if(action.equals("create")){
 
+                Stage adminStage = new Stage();
+                AdminGUI adminGUI = new AdminGUI();
+                adminGUI.start(adminStage);
+                primaryStage.close();
+   
+            }
+            // else if(action.equals("signup")){
+
+            // }
+        });
         root.getChildren().addAll(
-                passwordField, idField, titleLabel, createAccountButton, firstNameField, lastNameField,
-                genderComboBox, addressField, phoneNumberField, emailField
-        );
-
+            passwordField, idField, titleLabel, createAccountButton, firstNameField, lastNameField,
+            genderComboBox, addressField, phoneNumberField, emailField, returnButton
+         );
         Scene scene = new Scene(root, 687, 474);
         primaryStage.setScene(scene);
         primaryStage.show();

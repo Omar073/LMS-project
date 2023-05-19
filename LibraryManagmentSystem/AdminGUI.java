@@ -5,6 +5,12 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -71,7 +77,7 @@ public class AdminGUI extends Application{
         addUserButton.setLayoutY(157.0);
         addUserButton.setOnAction(event -> {
             Stage signupstage = new Stage();
-            SignUpGUI signupgui = new SignUpGUI();
+            SignUpGUI signupgui = new SignUpGUI("create");
             signupgui.start(signupstage);
             primaryStage.close();
         });
@@ -94,7 +100,7 @@ public class AdminGUI extends Application{
         viewBooksButton.setLayoutX(73.0);
         viewBooksButton.setLayoutY(225.0);
         viewBooksButton.setOnAction(event -> {
-            DisplayListGUI displayListGUI = new DisplayListGUI(Library.books);
+            DisplayListGUI displayListGUI = new DisplayListGUI(Library.books, "admin");
             Stage displaybooksstage = new Stage();
             displayListGUI.start(displaybooksstage);
             primaryStage.close();
@@ -105,7 +111,7 @@ public class AdminGUI extends Application{
         viewUsersButton.setLayoutX(291.0);
         viewUsersButton.setLayoutY(225.0);
         viewUsersButton.setOnAction(event -> {
-            DisplayListGUI displayListGUI = new DisplayListGUI(Library.persons);
+            DisplayListGUI displayListGUI = new DisplayListGUI(Library.persons, "admin");
             Stage displayusersstage = new Stage();
             displayListGUI.start(displayusersstage);
             primaryStage.close();
@@ -135,7 +141,7 @@ public class AdminGUI extends Application{
         viewCartButton.setLayoutX(302.0);
         viewCartButton.setLayoutY(284.0);
         viewCartButton.setOnAction(event -> {
-            DisplayListGUI displayListGUI = new DisplayListGUI(person.getCart());
+            DisplayListGUI displayListGUI = new DisplayListGUI(person.getCart(), "admin");
             Stage displaybooksstage = new Stage();
             displayListGUI.start(displaybooksstage);
             primaryStage.close();
@@ -177,6 +183,17 @@ public class AdminGUI extends Application{
             alert.showAndWait();
             System.exit(0);
         });
+
+        // Set background image
+        Image backgroundImage = new Image("image.jpg");
+        BackgroundImage background = new BackgroundImage(
+                backgroundImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(687, 474, false, false, false, false)
+        );
+        root.setBackground(new Background(background));
 
         root.getChildren().addAll(adminLabel, addBookButton, removeBookButton, addUserButton,
                 removeUserButton, viewBooksButton, viewUsersButton, searchUsersButton,

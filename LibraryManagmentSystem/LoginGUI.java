@@ -10,8 +10,16 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class LoginGUI extends Application {
@@ -33,15 +41,15 @@ public class LoginGUI extends Application {
         idField.setLayoutY(107.0);
         idField.setPromptText("ID");
 
-        Label loginLabel = new Label("Login Page");
+        Label loginLabel = new Label("Admin Page");
         loginLabel.setLayoutX(247.0);
         loginLabel.setLayoutY(14.0);
         loginLabel.setPrefSize(177.0, 45.0);
-        loginLabel.setStyle("-fx-background-color: black;");
-        loginLabel.setTextFill(javafx.scene.paint.Color.WHITE);
+        // loginLabel.setStyle("-fx-background-color: black;");
+        loginLabel.setTextFill(Color.BLACK);
         loginLabel.setAlignment(javafx.geometry.Pos.CENTER);
         loginLabel.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
-        loginLabel.setFont(new Font(20.0));
+        loginLabel.setFont(Font.font("System", FontWeight.BOLD, 30.0));
         loginLabel.setEffect(new ColorAdjust());
 
         Button loginButton = new Button("Login");
@@ -50,8 +58,7 @@ public class LoginGUI extends Application {
         loginButton.setOnAction(event -> {
             enteredPassword = passwordField.getText();
             enteredID = idField.getText();
-            // boolean validCredentials = validateCredentials(Integer.parseInt(enteredID), enteredPassword , Library.persons, primaryStage);
-            validateCredentials(Integer.parseInt(enteredID), enteredPassword , Library.persons, primaryStage);
+            validateCredentials(Integer.parseInt(enteredID), enteredPassword, Library.persons, primaryStage);
         });
 
         root.getChildren().addAll(passwordField, idField, loginLabel, loginButton);
@@ -59,6 +66,17 @@ public class LoginGUI extends Application {
         Scene scene = new Scene(root, 687, 474);
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        // Set background image
+        Image backgroundImage = new Image("image.jpg");
+        BackgroundImage background = new BackgroundImage(
+                backgroundImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(687, 474, false, false, false, false)
+        );
+        root.setBackground(new Background(background));
     }
 
     private boolean validateCredentials(int userID, String password, ArrayList<Person> persons, Stage primaryStage) {
@@ -75,8 +93,7 @@ public class LoginGUI extends Application {
                 AdminGUI adminGUI = new AdminGUI(person);
                 adminGUI.start(adminStage);
                 primaryStage.close();
-            }
-            else if (person.getuser_ID() == userID && person.getPassword().equalsIgnoreCase(password) && person.getIsAdmin() == false) {
+            } else if (person.getuser_ID() == userID && person.getPassword().equalsIgnoreCase(password) && person.getIsAdmin() == false) {
                 isValidID = true;
                 isValidPassword = true;
                 showSuccessAlert(person.getFirstName());
