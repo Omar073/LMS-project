@@ -41,7 +41,7 @@ public class LoginGUI extends Application {
         idField.setLayoutY(107.0);
         idField.setPromptText("ID");
 
-        Label loginLabel = new Label("Admin Page");
+        Label loginLabel = new Label("Login Page");
         loginLabel.setLayoutX(247.0);
         loginLabel.setLayoutY(14.0);
         loginLabel.setPrefSize(177.0, 45.0);

@@ -218,6 +218,7 @@ public class SearchUsersGui extends Application {
                         }
                     }
                 }
+                
             });
             Button returnButton = new Button("Return");
             returnButton.setLayoutX(285);
