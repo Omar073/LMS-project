@@ -1,9 +1,5 @@
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Librarian extends Person{
-
-  static Scanner scanner = new Scanner(System.in);
 
   // default constructor
   public Librarian() {
