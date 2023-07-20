@@ -58,6 +58,14 @@ public class LoginGUI extends Application {
         loginButton.setOnAction(event -> {
             enteredPassword = passwordField.getText();
             enteredID = idField.getText();
+            if(enteredID.isEmpty() || enteredPassword.isEmpty()){
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Login Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Please enter a valid ID and password.");
+                alert.showAndWait();
+                return;
+            }
             validateCredentials(Integer.parseInt(enteredID), enteredPassword, Library.persons, primaryStage);
         });
 
@@ -93,7 +101,8 @@ public class LoginGUI extends Application {
                 AdminGUI adminGUI = new AdminGUI(person);
                 adminGUI.start(adminStage);
                 primaryStage.close();
-            } else if (person.getuser_ID() == userID && person.getPassword().equalsIgnoreCase(password) && person.getIsAdmin() == false) {
+            } 
+            else if (person.getuser_ID() == userID && person.getPassword().equalsIgnoreCase(password) && person.getIsAdmin() == false) {
                 isValidID = true;
                 isValidPassword = true;
                 showSuccessAlert(person.getFirstName());
