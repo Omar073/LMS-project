@@ -4,7 +4,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -120,6 +126,17 @@ public class NewBook extends Application{
                 adminGUI.start(adminStage);
                 primaryStage.close();
             });
+
+        // Set background image
+        Image backgroundImage = new Image("image.jpg");
+        BackgroundImage background = new BackgroundImage(
+                backgroundImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true)
+        );
+        root.setBackground(new Background(background));
         
         root.getChildren().addAll(bookIDField, bookTitleField, titleLabel, addButton, bookAuthorField, bookPriceField, bookQuantityField, returnButton);
         

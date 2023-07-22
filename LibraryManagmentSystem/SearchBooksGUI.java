@@ -1,19 +1,23 @@
-import java.util.ArrayList;
-import javax.swing.Action;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class SearchBooksGUI extends Application {
 
-    private ArrayList<?> list; // ArrayList containing either an array of Persons or an array of Books
+    // private ArrayList<?> list; // ArrayList containing either an array of Persons or an array of Books
     private String Type;
     private String Search_key;
     private String Case;
@@ -312,6 +316,17 @@ public class SearchBooksGUI extends Application {
         if(Case.equals("search")){
             root.getChildren().addAll(textField, label, searchButton, returnButton);
         }
+
+        // Set background image
+        Image backgroundImage = new Image("image.jpg");
+        BackgroundImage background = new BackgroundImage(
+                backgroundImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true)
+        );
+        root.setBackground(new Background(background));
 
         Scene scene = new Scene(root, 687, 474);
         primaryStage.setScene(scene);
