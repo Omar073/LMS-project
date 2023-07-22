@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -18,7 +17,7 @@ import javafx.stage.Stage;
 
 public class SearchBooksGUI extends Application {
 
-    private ArrayList<?> list; // ArrayList containing either an array of Persons or an array of Books
+    // private ArrayList<?> list; // ArrayList containing either an array of Persons or an array of Books
     private String Type;
     private String Search_key;
     private String Case;

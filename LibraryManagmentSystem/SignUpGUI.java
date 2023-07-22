@@ -125,15 +125,17 @@ public class SignUpGUI extends Application {
         returnButton.setPrefSize(83, 45);
         returnButton.setOnAction(event -> {
             if(action.equals("create")){
-
                 Stage adminStage = new Stage();
                 AdminGUI adminGUI = new AdminGUI();
                 adminGUI.start(adminStage);
                 primaryStage.close();
             }
-            // else if(action.equals("signup")){
-
-            // }
+            else if(action.equals("signup")){
+                Stage mainpage = new Stage();
+                MyHelloApp myhelloapp = new MyHelloApp();
+                myhelloapp.start(mainpage);
+                primaryStage.close();
+            }
         });
 
         // Set background image
