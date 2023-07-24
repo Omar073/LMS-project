@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.Iterator;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -18,15 +18,12 @@ import javafx.stage.Stage;
 
 public class SearchUsersGui extends Application {
 
-    private ArrayList<?> list; // ArrayList containing either an array of Persons or an array of Books
+    // private ArrayList<?> list; // ArrayList containing either an array of Persons or an array of Books
     private String Type;
     private String Search_key;
-    private String Case;
 
     public SearchUsersGui(String Type, String Case) {
-        // this.list = list;
         this.Type = Type;
-        this.Case = Case;
     }
 
     @Override
@@ -49,18 +46,40 @@ public class SearchUsersGui extends Application {
         label.setFont(new Font(22));
 
         Button searchButton = new Button("Search");
-        searchButton.setLayoutX(215);
-        searchButton.setLayoutY(165);
+        if(Type.equals("admin")){
+            searchButton.setLayoutX(215);
+            searchButton.setLayoutY(165);
+        }
+        else if(Type.equals("reader")){
+            searchButton.setLayoutX(240);
+            searchButton.setLayoutY(165);
+        }
         searchButton.setPrefSize(74, 34);
         searchButton.setOnAction(event -> {
             Search_key = textField.getText();
             Person person = null;
-            boolean isId = true;
+            // try {
+            //     for (Person p : Library.persons) {
+            //         if (p.getuser_ID() == Integer.parseInt(Search_key)) {
+            //             person = p;
+            //             Alert alert = new Alert(AlertType.INFORMATION);
+            //             alert.setTitle("Person Information");
+            //             alert.setHeaderText(null);
+            //             alert.setContentText("First Name: " + p.getFirstName()
+            //                     + "\nLast Name: " + p.getLastName()
+            //                     + "\nID: " + p.getuser_ID()
+            //                     + "\nPhone Number: " + p.getPhoneNumber()
+            //                     + "\nEmail: " + p.getEmail());
+            //             alert.showAndWait();
+            //         }
+            //     }
+            // }
             try {
-                for (Person p : Library.persons) {
+                Iterator<Person> iterator = Library.persons.iterator();
+                while (iterator.hasNext()) {
+                    Person p = iterator.next();
                     if (p.getuser_ID() == Integer.parseInt(Search_key)) {
                         person = p;
-                        isId = true;
                         Alert alert = new Alert(AlertType.INFORMATION);
                         alert.setTitle("Person Information");
                         alert.setHeaderText(null);
@@ -69,20 +88,16 @@ public class SearchUsersGui extends Application {
                                 + "\nID: " + p.getuser_ID()
                                 + "\nPhone Number: " + p.getPhoneNumber()
                                 + "\nEmail: " + p.getEmail());
-
                         alert.showAndWait();
                     }
                 }
             }
             catch (NumberFormatException e) {
-                isId = false;
-            }
-        
-            if (!isId) {
-                for (Person p : Library.persons) {
+                Iterator<Person> iterator = Library.persons.iterator();
+                while (iterator.hasNext()) {
+                    Person p = iterator.next();
                     if (p.getFirstName().equalsIgnoreCase(Search_key)) {
                         person = p;
-                        isId = true;
                         Alert alert = new Alert(AlertType.INFORMATION);
                         alert.setTitle("Person Information");
                         alert.setHeaderText(null);
@@ -91,12 +106,10 @@ public class SearchUsersGui extends Application {
                                 + "\nID: " + p.getuser_ID()
                                 + "\nPhone Number: " + p.getPhoneNumber()
                                 + "\nEmail: " + p.getEmail());
-
                         alert.showAndWait();
                     }
                 }
             }
-        
             if (person == null) {
                 Alert alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Error");
@@ -106,114 +119,105 @@ public class SearchUsersGui extends Application {
             }
         });
 
-        if(Type.equals("admin") && Case.equals("delete")){
+        if(Type.equals("admin")){
             Button deleteButton = new Button("Delete");
             deleteButton.setLayoutX(364);
             deleteButton.setLayoutY(165);
             deleteButton.setPrefSize(74, 34);
             deleteButton.setOnAction(event -> {
                 Search_key = textField.getText();
-                boolean isId = true;
                 Person person = null;
+                // try {
+                //     for (Person p : Library.persons) {
+                //         if (p.getuser_ID() == Integer.parseInt(Search_key)) {
+                //             person = p;
+                //             Library.persons.remove(person);
+                //             Alert alert = new Alert(AlertType.INFORMATION);
+                //             alert.setTitle("User Deleted");
+                //             alert.setHeaderText(null);
+                //             alert.setContentText("User successfully deleted");
+                //             alert.showAndWait();
+                //             // exception error  *************************************************************
+                //         }
+                //     }
+                // }
                 try {
-                    for (Person p : Library.persons) {
+                    Iterator<Person> iterator = Library.persons.iterator();
+                    while (iterator.hasNext()) {
+                        Person p = iterator.next();
                         if (p.getuser_ID() == Integer.parseInt(Search_key)) {
                             person = p;
-                            isId = true;
-                            Library.persons.remove(person);
+                            iterator.remove(); // Safely remove the element using the iterator
                             Alert alert = new Alert(AlertType.INFORMATION);
                             alert.setTitle("User Deleted");
                             alert.setHeaderText(null);
-                            alert.setContentText("User successfully deleted1");
+                            alert.setContentText("User successfully deleted");
                             alert.showAndWait();
                         }
-                    }
-                    if (person == null) {
-                        Alert alert = new Alert(AlertType.ERROR);
-                        alert.setTitle("Error");
-                        alert.setHeaderText(null);
-                        alert.setContentText("User not found.");
-                        alert.showAndWait();
                     }
                 }
                 catch (NumberFormatException e) {
-                    isId = false;
-                }
-            
-                if (!isId) {
-                    for (Person p : Library.persons) {
+                    Iterator<Person> iterator = Library.persons.iterator();
+                    while (iterator.hasNext()) {
+                        Person p = iterator.next();
                         if (p.getFirstName().equalsIgnoreCase(Search_key)) {
                             person = p;
-                            Library.persons.remove(person);
+                            iterator.remove(); // Safely remove the element using the iterator
                             Alert alert = new Alert(AlertType.INFORMATION);
                             alert.setTitle("User Deleted");
                             alert.setHeaderText(null);
-                            alert.setContentText("User successfully deleted1");
+                            alert.setContentText("User successfully deleted");
                             alert.showAndWait();
                         }
                     }
-                    if (person == null) {
+                }
+
+                if (person == null) {
                         Alert alert = new Alert(AlertType.ERROR);
                         alert.setTitle("Error");
                         alert.setHeaderText(null);
                         alert.setContentText("User not found.");
                         alert.showAndWait();
                     }
-                }
         
             });
-        
-            
-            Button returnButton = new Button("Return");
-            returnButton.setLayoutX(285);
-            returnButton.setLayoutY(335);
-            returnButton.setPrefSize(83, 45);
-            returnButton.setOnAction(event -> {
-                Stage adminStage = new Stage();
-                AdminGUI adminGUI = new AdminGUI();
-                adminGUI.start(adminStage);
-                primaryStage.close();
-            });
-
-            root.getChildren().addAll(textField, label, searchButton, deleteButton, returnButton);
-        }
-        // else if(Type.equals("user")){
-        //     Button returnButton = new Button("Return");
-        //     returnButton.setLayoutX(285);
-        //     returnButton.setLayoutY(335);
-        //     returnButton.setPrefSize(83, 45);
-        //     returnButton.setOnAction(event -> {
-        //         //return to user page
-        //         // Stage adminStage = new Stage();
-        //         // AdminGUI adminGUI = new AdminGUI();
-        //         // adminGUI.start(adminStage);
-        //         primaryStage.close();
-        //     });
-
-        //     root.getChildren().addAll(textField, label, searchButton, returnButton);
-        // }
-        else if(Type.equals("admin") && Case.equals("block")){
 
             Button blockButton = new Button("Block");
-            blockButton.setLayoutX(364);
-            blockButton.setLayoutY(165);
+            blockButton.setLayoutX(290);
+            blockButton.setLayoutY(210);
             blockButton.setPrefSize(74, 34);
             blockButton.setOnAction(event -> {
                 Search_key = textField.getText();
-                try{
-                    for(Person p : Library.persons){
-                        if(p.getuser_ID() == Integer.parseInt(Search_key)){
+                // try{
+                //     for(Person p : Library.persons){
+                //         if(p.getuser_ID() == Integer.parseInt(Search_key)){
+                //             p.setIsBlocked(true);
+                //             Alert alert = new Alert(AlertType.INFORMATION);
+                //                 alert.setTitle("User Blocked");
+                //                 alert.setHeaderText(null);
+                //                 alert.setContentText("User successfully blocked");
+                //                 alert.showAndWait();
+                //         }
+                //     }
+                // }
+                try {
+                    Iterator<Person> iterator = Library.persons.iterator();
+                    while (iterator.hasNext()) {
+                        Person p = iterator.next();
+                        if (p.getuser_ID() == Integer.parseInt(Search_key)) {
                             p.setIsBlocked(true);
                             Alert alert = new Alert(AlertType.INFORMATION);
-                                alert.setTitle("User Blocked");
-                                alert.setHeaderText(null);
-                                alert.setContentText("User successfully blocked");
-                                alert.showAndWait();
+                            alert.setTitle("User Blocked");
+                            alert.setHeaderText(null);
+                            alert.setContentText("User successfully blocked");
+                            alert.showAndWait();
                         }
                     }
                 }
                 catch(NumberFormatException e){
-                    for(Person p : Library.persons){
+                    Iterator<Person> iterator = Library.persons.iterator();
+                    while (iterator.hasNext()) {
+                        Person p = iterator.next();
                         if(p.getFirstName().equalsIgnoreCase(Search_key)){
                             p.setIsBlocked(true);
                             Alert alert = new Alert(AlertType.INFORMATION);
@@ -226,53 +230,45 @@ public class SearchUsersGui extends Application {
                 }
                 
             });
-            Button returnButton = new Button("Return");
-            returnButton.setLayoutX(285);
-            returnButton.setLayoutY(335);
-            returnButton.setPrefSize(83, 45);
-            returnButton.setOnAction(event -> {
-                Stage adminStage = new Stage();
-                AdminGUI adminGUI = new AdminGUI();
-                adminGUI.start(adminStage);
-                primaryStage.close();
-            });
 
-            root.getChildren().addAll(textField, label, searchButton, blockButton, returnButton);
+            root.getChildren().addAll(textField, label, searchButton, deleteButton, blockButton);
         }
-
         
         Button returnButton = new Button("Return");
         returnButton.setLayoutX(285);
-        returnButton.setLayoutY(335);
+        returnButton.setLayoutY(360);
         returnButton.setPrefSize(83, 45);
         //add root.get children here so that it would add children before clicking return button
         returnButton.setOnAction(event -> {
-            if(Type.equals("admin") && Case.equals("search")){
+            if(Type.equals("admin")){
                 Stage adminStage = new Stage();
                 AdminGUI adminGUI = new AdminGUI();
                 adminGUI.start(adminStage);
                 primaryStage.close();
             }
-            else if(Type.equals("reader") && Case.equals("search")){
+            else if(Type.equals("reader")){
                 Stage readerStage = new Stage();
                 ReaderGUI readerGUI = new ReaderGUI();
                 readerGUI.start(readerStage);
                 primaryStage.close();
             }
         });
+
+        root.getChildren().add(returnButton);
         
-        if(Case.equals("search")){
-            root.getChildren().addAll(textField, label, searchButton, returnButton);
-        }
+        // this line cause exception
+        // if(Case.equals("search")){
+        //     root.getChildren().addAll(textField, label, searchButton, returnButton);
+        // } 
 
         // Set background image
         Image backgroundImage = new Image("image.jpg");
         BackgroundImage background = new BackgroundImage(
-                backgroundImage,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.CENTER,
-                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true)
+            backgroundImage,
+            BackgroundRepeat.NO_REPEAT,
+            BackgroundRepeat.NO_REPEAT,
+            BackgroundPosition.CENTER,
+            new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true)
         );
         root.setBackground(new Background(background));
 

@@ -13,6 +13,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class AdminGUI extends Application{
@@ -35,11 +36,11 @@ public class AdminGUI extends Application{
         adminLabel.setLayoutX(247.0);
         adminLabel.setLayoutY(14.0);
         adminLabel.setPrefSize(177.0, 45.0);
-        adminLabel.setStyle("-fx-background-color: black;");
+        // adminLabel.setStyle("-fx-background-color: black;");
         adminLabel.setTextFill(javafx.scene.paint.Color.WHITE);
         adminLabel.setAlignment(javafx.geometry.Pos.CENTER);
         adminLabel.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
-        adminLabel.setFont(new Font(20.0));
+        adminLabel.setFont(Font.font("System", FontWeight.BOLD, 30.0));
         adminLabel.setEffect(new ColorAdjust());
 
         Button addBookButton = new Button("Add new book");
@@ -82,11 +83,31 @@ public class AdminGUI extends Application{
             primaryStage.close();
         });
 
+        Button searchUsersButton = new Button("Search users");
+        searchUsersButton.setLayoutX(504.0);
+        searchUsersButton.setLayoutY(225.0);
+        searchUsersButton.setOnAction(event -> {
+            SearchUsersGui searchusersGUI = new SearchUsersGui("admin", "search");
+            Stage searchusersstage = new Stage();
+            searchusersGUI.start(searchusersstage);
+            primaryStage.close();
+        });
+
         Button removeUserButton = new Button("Remove a user");
         removeUserButton.setLayoutX(288.0);
         removeUserButton.setLayoutY(157.0);
         removeUserButton.setOnAction(event -> {
             SearchUsersGui searchusersGUI = new SearchUsersGui("admin", "delete");
+            Stage searchusersstage = new Stage();
+            searchusersGUI.start(searchusersstage);
+            primaryStage.close();
+        });
+        
+        Button blockUserButton = new Button("Block user");
+        blockUserButton.setLayoutX(510.0);
+        blockUserButton.setLayoutY(340.0);
+        blockUserButton.setOnAction(event -> {
+            SearchUsersGui searchusersGUI = new SearchUsersGui("admin", "block");
             Stage searchusersstage = new Stage();
             searchusersGUI.start(searchusersstage);
             primaryStage.close();
@@ -117,15 +138,6 @@ public class AdminGUI extends Application{
             primaryStage.close();
         });
 
-        Button searchUsersButton = new Button("Search users");
-        searchUsersButton.setLayoutX(504.0);
-        searchUsersButton.setLayoutY(225.0);
-        searchUsersButton.setOnAction(event -> {
-            SearchUsersGui searchusersGUI = new SearchUsersGui("admin", "search");
-            Stage searchusersstage = new Stage();
-            searchusersGUI.start(searchusersstage);
-            primaryStage.close();
-        });
 
         Button searchBooksButton = new Button("Search books");
         searchBooksButton.setLayoutX(75.0);
@@ -160,16 +172,6 @@ public class AdminGUI extends Application{
         // Button removeBookFromCartButton = new Button("Remove book from cart");
         // removeBookFromCartButton.setLayoutX(72.0);
         // removeBookFromCartButton.setLayoutY(340.0);
-
-        Button blockUserButton = new Button("Block user");
-        blockUserButton.setLayoutX(510.0);
-        blockUserButton.setLayoutY(340.0);
-        blockUserButton.setOnAction(event -> {
-            SearchUsersGui searchusersGUI = new SearchUsersGui("admin", "block");
-            Stage searchusersstage = new Stage();
-            searchusersGUI.start(searchusersstage);
-            primaryStage.close();
-        });
 
         Button logoutButton = new Button("Logout");
         logoutButton.setLayoutX(307.0);
