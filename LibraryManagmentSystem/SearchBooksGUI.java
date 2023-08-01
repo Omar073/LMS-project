@@ -330,7 +330,7 @@ public class SearchBooksGUI extends Application {
 
         Scene scene = new Scene(root, 687, 474);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Search Books GUI");
+        primaryStage.setTitle("Search Books");
         primaryStage.show();
     }
 

@@ -110,7 +110,7 @@ public class SignUpGUI extends Application {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Login Successful");
             alert.setHeaderText(null);
-            alert.setContentText("Welcome " + firstName + " to the Library Management System!");
+            alert.setContentText("Welcome to the Library Management System " + firstName + " !");
             alert.showAndWait();
 
             Stage readerStage = new Stage();
@@ -132,7 +132,7 @@ public class SignUpGUI extends Application {
             }
             else if(action.equals("signup")){
                 Stage mainpage = new Stage();
-                MyHelloApp myhelloapp = new MyHelloApp();
+                HomePage myhelloapp = new HomePage();
                 myhelloapp.start(mainpage);
                 primaryStage.close();
             }
@@ -155,6 +155,7 @@ public class SignUpGUI extends Application {
         );
         Scene scene = new Scene(root, 687, 474);
         primaryStage.setScene(scene);
+        primaryStage.setTitle("SignUp Page");
         primaryStage.show();
     }
 
