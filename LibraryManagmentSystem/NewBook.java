@@ -143,7 +143,7 @@ public class NewBook extends Application{
         // Create a scene and set it on a stage
         Scene scene = new Scene(root, 687, 474);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Search Books GUI");
+        primaryStage.setTitle("Add book");
         primaryStage.show();
     }
 

@@ -3,7 +3,7 @@ public class Main {
 
     Library library = new Library();
 
-    MyHelloApp.main(args); //    GUI  
+    HomePage.main(args); //    GUI  
 
   }
 }

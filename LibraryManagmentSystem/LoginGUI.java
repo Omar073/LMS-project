@@ -19,9 +19,6 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -98,7 +95,7 @@ public class LoginGUI extends Application {
         BackButton.setFont(new Font(20));
         BackButton.setOnAction(event -> {
             Stage mainpage = new Stage();
-            MyHelloApp myhelloapp = new MyHelloApp();
+            HomePage myhelloapp = new HomePage();
             myhelloapp.start(mainpage);
             primaryStage.close();
         });
@@ -123,10 +120,10 @@ public class LoginGUI extends Application {
         gridPane.add(loginButton, 0, 3, 2, 1); // col index, row index, col span, row span
         gridPane.add(signupButton, 1, 3, 2, 1); // Spanning 2 columns
         gridPane.add(BackButton, 0, 18, 2, 1); // Spanning 2 columns
-        GridPane.setMargin(loginLabel, new Insets(0, 0, 15, 0)); // Add 10 pixels of margin around the loginLabel
-        GridPane.setMargin(loginButton, new Insets(5, 25, 0, 0)); // Add 10 pixels of margin around the loginLabel
-        GridPane.setMargin(signupButton, new Insets(5, 0, 0, 70)); // Add 10 pixels of margin around the loginLabel
-        GridPane.setMargin(BackButton, new Insets(5, 0, 0, 45)); // Add 10 pixels of margin around the loginLabel
+        GridPane.setMargin(loginLabel, new Insets(0, 0, 15, 0)); // top, right, bottom, left
+        GridPane.setMargin(loginButton, new Insets(5, 25, 0, 0)); // top, right, bottom, left
+        GridPane.setMargin(signupButton, new Insets(5, 0, 0, 70)); // top, right, bottom, left
+        GridPane.setMargin(BackButton, new Insets(5, 0, 0, 45)); // top, right, bottom, left
 
 
         // // Center the GridPane inside the StackPane
@@ -159,6 +156,7 @@ public class LoginGUI extends Application {
 
         Scene scene = new Scene(root, panelWidth, panelHeight);
         primaryStage.setScene(scene);
+        primaryStage.setTitle("Login Page");
         primaryStage.show();
     }
 
@@ -204,7 +202,7 @@ public class LoginGUI extends Application {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Login Successful");
         alert.setHeaderText(null);
-        alert.setContentText("Welcome " + name + " to the Library Management System!");
+        alert.setContentText("Welcome to the Library Management System " + name + " !");
         alert.showAndWait();
     }
 

@@ -183,7 +183,11 @@ public class AdminGUI extends Application{
             // alert.setContentText("Welcome to the Library Management System!");
             alert.setContentText("Logged out successfully!");
             alert.showAndWait();
-            System.exit(0);
+            // System.exit(0);
+            HomePage homepage = new HomePage();
+            Stage homePageStage = new Stage();
+            homepage.start(homePageStage);
+            primaryStage.close();
         });
 
         // Set background image
@@ -204,6 +208,7 @@ public class AdminGUI extends Application{
 
         Scene scene = new Scene(root, 687, 474);
         primaryStage.setScene(scene);
+        primaryStage.setTitle("Admin Page");
         primaryStage.show();
     }
 

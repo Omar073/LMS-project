@@ -84,7 +84,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class MyHelloApp extends Application {
+public class HomePage extends Application {
 
     @Override
     public void start(Stage primaryStage) {
@@ -111,16 +111,16 @@ public class MyHelloApp extends Application {
             primaryStage.close();
         });
 
-        Button logoutButton = new Button("Logout");
+        Button logoutButton = new Button("Exit");
         logoutButton.setLayoutX(307.0);
         logoutButton.setLayoutY(411.0);
         logoutButton.setPrefSize(100, 40);
         logoutButton.setFont(new Font(20));
         logoutButton.setOnAction(event -> {
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Logout");
+            alert.setTitle("Exit");
             alert.setHeaderText(null);
-            alert.setContentText("Logged out successfully!");
+            alert.setContentText("See you soon!");
             alert.showAndWait();
             System.exit(0);
         });
@@ -128,8 +128,8 @@ public class MyHelloApp extends Application {
         StackPane buttonPane = new StackPane(loginButton, signupButton, logoutButton);
         buttonPane.setAlignment(Pos.CENTER); // Align buttons to center of StackPane
         buttonPane.setPadding(new Insets(10));
-        StackPane.setMargin(loginButton, new Insets(0, 0, 110, 0));
-        StackPane.setMargin(logoutButton, new Insets(250, 0, 0, 0));
+        StackPane.setMargin(loginButton, new Insets(0, 0, 110, 0)); // top, right, bottom, left
+        StackPane.setMargin(logoutButton, new Insets(250, 0, 0, 0)); // top, right, bottom, left
 
         root.getChildren().add(buttonPane);
 
@@ -152,6 +152,7 @@ public class MyHelloApp extends Application {
 
         Scene scene = new Scene(root, panelWidth, panelHeight);
         primaryStage.setScene(scene);
+        primaryStage.setTitle("Library Management System");
         primaryStage.show();
     }
 
