@@ -15,17 +15,17 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class NewBook extends Application{
+public class NewBookGUI extends Application{
     
     private String action;
     private Book book = new Book();
 
     //constructor
-    public NewBook(String action) {
+    public NewBookGUI(String action) {
         this.action = action;
     }
 
-    public NewBook(String action, Book book) {
+    public NewBookGUI(String action, Book book) {
         this.action = action;
         this.book = book;
     }

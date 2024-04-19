@@ -86,7 +86,7 @@ public class SearchBooksGUI extends Application {
 
                     alert.showAndWait();
                     if(Case.equals("search&update")){
-                        NewBook newbook = new NewBook("update", book);
+                        NewBookGUI newbook = new NewBookGUI("update", book);
                         Stage newbooksstage = new Stage();
                         newbook.start(newbooksstage);
                         primaryStage.close();
