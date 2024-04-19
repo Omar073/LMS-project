@@ -1,4 +1,3 @@
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -48,7 +47,7 @@ public class AdminGUI extends Application{
         addBookButton.setLayoutX(72.0);
         addBookButton.setLayoutY(91.0);
         addBookButton.setOnAction(event -> {
-            NewBookGUI newbook = new NewBookGUI("add");
+            NewBook newbook = new NewBook("add");
             Stage newbooksstage = new Stage();
             newbook.start(newbooksstage);
             primaryStage.close();

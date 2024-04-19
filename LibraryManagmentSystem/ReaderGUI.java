@@ -21,7 +21,7 @@ public class ReaderGUI extends Application {
 
     //constructor
     public ReaderGUI(Person person) {
-        ReaderGUI.person = person;
+        this.person = person;
     }   
 
     // default constructor
